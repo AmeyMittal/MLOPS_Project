@@ -5,9 +5,11 @@ Our proposed machine learning system aims to significantly enhance the learning 
 1. Brightspace (Contains Video lectures)
 2. NPTEL (University Learning system in India which contains a plethora of live video classes)
 
+Target Audience: The primary audience for this system is students—particularly those engaged in online or remote education via EdTech platforms, learning management systems (LMS), and educational apps. 
+
 Status Quo in Existing Services : Students must watch long, dense lecture videos to find relevant content, making learning inefficient. They often take notes, rewatch segments, or use external tools, leading to wasted time, cognitive overload, and missed information. 
 
-Value Added by the Machine Learning System: Our system lets students skip full lectures and get instant answers via an LLM-powered chatbot. 
+Value Added by the Machine Learning System: Our system lets students skip full lectures and get instant answers via an LLM-powered chatbot.
 
 Key Benefits: 
 * Saves Time – Query specific concepts instantly. 
@@ -15,12 +17,14 @@ Key Benefits:
 * Better Retention – Structured, revisitable answers. 
 * Inclusive – Supports diverse learning needs. 
 
-Customer Scale - 
+Customer Scale - On high-traffic days like finals at NYU, the Brightspace portal can experience up to 2000 students revisiting lecture content. With an average of 20 chatbot queries per student, this can result in over 40K requests in a single day—highlighting the need for a scalable and responsive system.
 
-Business Metric - 
-
-The system comprises of two core components: (1) a speech-to-text model that transcribes lecture videos into textual content, and (2) a Large Language Model (LLM)-powered chatbot that enables students to ask specific questions about the lecture and receive accurate, context-aware responses. This end-to-end MLOps pipeline is designed to optimize time efficiency and improve content accessibility for students. 
-
+Business Metrics for Evaluation 
+* The impact and success of this system will be evaluated based on the following key business metrics: 
+* User Adoption Rate: Number of students who actively use the Q&A feature after lecture uploads. 
+* Time Saved: Average reduction in time spent per lecture by users who use the feature compared to those who don’t. 
+* Engagement Metrics: Increase in student interaction, question frequency, and repeat usage. 
+* Customer Retention and Satisfaction: Positive feedback from users and higher platform retention due to enhanced learning experiences.
 
 
 ### Contributors

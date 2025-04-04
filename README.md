@@ -168,6 +168,38 @@ and which optional "difficulty" points you are attempting. -->
 <!-- Make sure to clarify how you will satisfy the Unit 6 and Unit 7 requirements, 
 and which optional "difficulty" points you are attempting. -->
 
+### Model Serving Strategy
+
+**Strategy**  
+Both Whisper and LLaMA are deployed as containerized **FastAPI** endpoints, each hosted on separate VMs with GPU support.
+
+- **Whisper Endpoint**: Supports real-time transcription (ASR) with online inference.
+- **LLaMA Endpoint**: Powers context-aware question answering using a RAG pipeline.
+
+**Deployment Diagram**  
+Two containerized services:
+- `Whisper API`: Deployed on a GPU-enabled VM
+- `RAG Chatbot API`: Deployed on a separate GPU-enabled VM with high VRAM
+
+**Justification**  
+- **Whisper** must maintain inference latency under 2 seconds for ~30-second audio clips to be usable in real-time scenarios.
+- **LLaMA** requires over 40 GB of GPU VRAM to support at least three concurrent users interacting with lecture-based content.
+
+**Optimizations**  
+- **Whisper**: Uses FP16 precision and **ONNX Runtime** to reduce latency and resource usage.
+- **RAG System**: Utilizes **FAISS** for efficient retrieval and a **4-bit quantized** version of LLaMA for memory efficiency.
+
+**Lecture Tie-in**  
+This setup reflects model/system-level optimizations covered in **Lab 6**.
+
+**Metrics and Resources**  
+- Whisper latency: < 2 seconds
+- LLaMA capacity: Supports 3 concurrent users
+- Total: 2 GPU-accelerated, containerized API endpoints
+
+**Additional Evaluation**  
+Whisper was benchmarked across CPU, GPU, and lightweight variants to assess the cost-performance tradeoff and optimize deployment choices.
+
 #### Data pipeline
 
 <!-- Make sure to clarify how you will satisfy the Unit 8 requirements,  and which 
@@ -177,5 +209,70 @@ optional "difficulty" points you are attempting. -->
 
 <!-- Make sure to clarify how you will satisfy the Unit 3 requirements,  and which 
 optional "difficulty" points you are attempting. -->
+
+### Infrastructure-as-Code (IaC)
+
+**Strategy**  
+All infrastructure components (VMs, GPUs, networking) are provisioned using `python-chi` scripts. Service setup and configuration are automated using **Ansible** and **Helm**.
+
+**Structure**  
+- Git repository is organized with:
+  - `provisioning/` – Python-CHI scripts for resource creation
+  - `service-config/` – Ansible roles and Helm charts for deployment
+
+**Justification**  
+- Prevents manual setup errors
+- Ensures repeatability and reproducibility
+- Supports versioning and auditability
+
+**Lecture Tie-in**  
+Follows Lab 3 strategy using Python-CHI and Ansible.
+
+**Infrastructure Resources**  
+- 3 `m1.medium` VMs
+- 1 persistent floating IP
+- GPU blocks (MI100, A100) scheduled programmatically
+
+### Cloud-Native Architecture
+
+**Strategy**  
+All services are containerized (Whisper inference, RAG chatbot, retraining monitor, background tasks) and deployed as microservices. Services communicate via REST APIs.
+
+**Deployment**  
+- Each service runs in a separate **Kubernetes pod**
+- Helm used for pod and service configuration
+
+**Justification**  
+- Enables modular, isolated, and scalable deployments
+- Avoids "snowflake" infrastructure problems
+- Eases service updates and monitoring
+
+**Lecture Tie-in**  
+Follows cloud-native principles discussed in DevOps lectures.
+
+**Resources**  
+- 4 Dockerized services, deployed one per VM
+
+---
+
+### CI/CD and Continuous Training
+
+**Strategy**  
+A hybrid **GitHub Actions + Argo Workflows** pipeline retrains Whisper when the system detects over 100 bad transcripts.
+
+**Pipeline Stages**  
+`trigger → train → evaluate → test → package → deploy`
+
+**Justification**  
+- Automates the retraining process
+- Ensures consistent, testable, and production-ready updates
+- Reduces manual intervention and turnaround time
+
+**Lecture Tie-in**  
+Mirrors Lab 3 MLOps workflow and CI/CD best practices.
+
+**Metrics**  
+- Retraining triggered after 100+ transcript errors
+- 2 retraining blocks/week allocated on `MI100` GPUs
 
 

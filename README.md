@@ -1,5 +1,6 @@
 # STUDY BOT - Audio Captioning and Q/A Chatbot
 
+## Group 48
 ### Value Proposition
 Our proposed machine learning system aims to significantly enhance the learning experience for students by integrating ML models into existing EdTech platforms. For eg - 
 1. Brightspace (Contains Video lectures)
@@ -100,6 +101,32 @@ diagram, (3) justification for your strategy, (4) relate back to lecture materia
 
 <!-- Make sure to clarify how you will satisfy the Unit 4 and Unit 5 requirements, 
 and which optional "difficulty" points you are attempting. -->
+
+### 🔁 Training and Re-Training Strategy
+
+#### Whisper ASR Model
+
+- **Initial Training**
+  Fine-tuned on a combined dataset of [Clotho](https://zenodo.org/records/3490684) and a curated subset of [NPTEL2020](https://github.com/AI4Bharat/NPTEL2020-Indian-English-Speech-Dataset/blob/master/README.md) to adapt to Indo-English lecture audio.
+
+- **Re-Training Trigger**
+  Retraining is initiated when the system accumulates more than **100 incorrect transcripts**. Users are prompted to correct these transcripts, and their inputs are used as **new ground truth** for fine-tuning.
+
+- **GPU Resources**
+  `MI100` GPUs, in **4-hour blocks, twice a week**, are allocated for training and re-training tasks.
+
+- **Experiment Tracking**
+  All training runs, dataset versions, and fine-tuning iterations are logged using **MLflow** or **Weights & Biases (W&B)** for reproducibility and transparency.
+
+---
+#### LLaMA LLM (RAG System)
+
+- **Primary Usage**:  
+  LLaMA is used to answer user queries based on transcripts generated from lecture audio, powered by a **Retrieval-Augmented Generation (RAG)** pipeline.
+
+- **Experimentation & Fine-Tuning**:  
+  Embedding generation experiments or LLM fine-tuning are conducted using `A100` GPUs in **8-hour blocks, every two weeks**.
+
 
 #### Model serving and monitoring platforms
 

@@ -97,12 +97,10 @@ The table below shows an example, it is not a recommendation. -->
 diagram, (3) justification for your strategy, (4) relate back to lecture material, 
 (5) include specific numbers. -->
 
-#### Model training and training platforms
-
 <!-- Make sure to clarify how you will satisfy the Unit 4 and Unit 5 requirements, 
 and which optional "difficulty" points you are attempting. -->
 
-### 🔁 Training and Re-Training Strategy
+### Training and Re-Training Strategy
 
 #### Whisper ASR Model
 
@@ -127,6 +125,43 @@ and which optional "difficulty" points you are attempting. -->
 - **Experimentation & Fine-Tuning**:  
   Embedding generation experiments or LLM fine-tuning are conducted using `A100` GPUs in **8-hour blocks, every two weeks**.
 
+
+### ⚙️ Experiment Tracking & Training Infrastructure
+
+#### 🧪 Experiment Tracking
+
+- **MLflow** will be used to log:
+  - Model performance metrics
+  - Inference speed
+  - Chatbot accuracy over time
+
+---
+
+### 🗓️ Job Scheduling with Ray Cluster
+
+- **Ray Cluster** will manage parallelized experimentation, especially for LLaMA-based workflows.
+- **Hyperparameter tuning** (e.g., batch size, retrieval depth, learning rate) is handled via **Ray Tune**.
+- **Ray Train** will be used during LLaMA fine-tuning to provide:
+  - Fault tolerance
+  - Model checkpointing
+  - Scalable distributed training
+
+---
+
+### 📈 Scaling & Distributed Training
+
+#### 🔊 Whisper ASR Fine-Tuning
+
+- **Distributed Data Parallel (DDP)** will be explored to accelerate training across multiple `MI100` GPUs.
+- Experiments will compare training time and efficiency using:
+  - Single GPU vs. Multi-GPU setups
+  - Gradient accumulation
+  - Mixed-precision training (FP16) for memory optimization
+
+#### 🧠 RAG System (LLaMA LLM)
+
+- Potential fine-tuning on **lecture-specific datasets** to improve domain adaptation.
+- **Ray Tune** will also be utilized here for hyperparameter optimization.
 
 #### Model serving and monitoring platforms
 

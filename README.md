@@ -137,7 +137,7 @@ and which optional "difficulty" points you are attempting. -->
 
 ---
 
-### 🗓️ Job Scheduling with Ray Cluster
+### Job Scheduling with Ray Cluster
 
 - **Ray Cluster** will manage parallelized experimentation, especially for LLaMA-based workflows.
 - **Hyperparameter tuning** (e.g., batch size, retrieval depth, learning rate) is handled via **Ray Tune**.

@@ -61,12 +61,13 @@ all the data. -->
 Name of data/model, conditions under which it was created (ideally with links/references), 
 conditions under which it may be used. -->
 
-|              | How it was created | Conditions of use |
-|--------------|--------------------|-------------------|
-| Data set 1   |                    |                   |
-| Data set 2   |                    |                   |
-| Base model 1 |                    |                   |
-| etc          |                    |                   |
+| Item             | How it was created                                                                                                                                                                                                                                                                                                         | Conditions of use                                                                                                               |
+|------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------|
+| NPTEL2020 Dataset | A Speech-to-Text dataset created by AI4Bharat using lecture audio from NPTEL. Audio was segmented and manually transcribed; clips with poor quality were filtered out to ensure high accuracy and capture a range of Indian English accents.                                                                                | Publicly released under a Creative Commons license for research and educational use.                                           |
+| Clotho Dataset    | A dataset for audio captioning (not speech-to-text), containing 4,981 audio clips and 24,905 captions. Audio is from Freesound and captions were crowdsourced from native English speakers via Mechanical Turk. Post-processing removed named entities and speech transcription.                                           | Freely available for research use.                                                                                              |
+| Whisper (OpenAI)  | A speech recognition model trained on 680,000 hours of multilingual/multitask web audio. It uses a transformer model and handles diverse accents, background noise, and multiple languages.                                                                                                                              | Released under the MIT License — free for commercial and non-commercial use, with rights to use, modify, and distribute.       |
+| LLaMA (Meta AI)   | A large language model trained on open datasets (e.g., Wikipedia, Books, GitHub). It uses transformer architecture and is designed for efficient scaling across various model sizes.                                                                                                                                        | Released under a non-commercial research license; can be used only for research and academic purposes.                         |
+
 
 
 ### Summary of infrastructure requirements

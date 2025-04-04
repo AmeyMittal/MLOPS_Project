@@ -187,15 +187,7 @@ Two containerized services:
 
 **Optimizations**  
 - **Whisper**: Uses FP16 precision and **ONNX Runtime** to reduce latency and resource usage.
-- **RAG System**: Utilizes **FAISS** for efficient retrieval and a **4-bit quantized** version of LLaMA for memory efficiency.
-
-**Lecture Tie-in**  
-This setup reflects model/system-level optimizations covered in **Lab 6**.
-
-**Metrics and Resources**  
-- Whisper latency: < 2 seconds
-- LLaMA capacity: Supports 3 concurrent users
-- Total: 2 GPU-accelerated, containerized API endpoints
+- **RAG System**: Utilizes **4-bit quantized** version of LLaMA for memory efficiency.
 
 **Additional Evaluation**  
 Whisper was benchmarked across CPU, GPU, and lightweight variants to assess the cost-performance tradeoff and optimize deployment choices.
@@ -225,9 +217,6 @@ All infrastructure components (VMs, GPUs, networking) are provisioned using `pyt
 - Ensures repeatability and reproducibility
 - Supports versioning and auditability
 
-**Lecture Tie-in**  
-Follows Lab 3 strategy using Python-CHI and Ansible.
-
 **Infrastructure Resources**  
 - 3 `m1.medium` VMs
 - 1 persistent floating IP
@@ -244,11 +233,7 @@ All services are containerized (Whisper inference, RAG chatbot, retraining monit
 
 **Justification**  
 - Enables modular, isolated, and scalable deployments
-- Avoids "snowflake" infrastructure problems
 - Eases service updates and monitoring
-
-**Lecture Tie-in**  
-Follows cloud-native principles discussed in DevOps lectures.
 
 **Resources**  
 - 4 Dockerized services, deployed one per VM
@@ -267,9 +252,6 @@ A hybrid **GitHub Actions + Argo Workflows** pipeline retrains Whisper when the 
 - Automates the retraining process
 - Ensures consistent, testable, and production-ready updates
 - Reduces manual intervention and turnaround time
-
-**Lecture Tie-in**  
-Mirrors Lab 3 MLOps workflow and CI/CD best practices.
 
 **Metrics**  
 - Retraining triggered after 100+ transcript errors

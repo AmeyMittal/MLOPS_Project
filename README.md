@@ -1,7 +1,27 @@
 ## STUDY BOT - Audio Captioning and Q/A Chatbot
 
 ## Value Proposition
-Our proposed machine learning system aims to significantly enhance the learning experience for students by integrating ML models into existing EdTech platforms. The system comprises of two core components: (1) a speech-to-text model that transcribes lecture videos into textual content, and (2) a Large Language Model (LLM)-powered chatbot that enables students to ask specific questions about the lecture and receive accurate, context-aware responses. This end-to-end MLOps pipeline is designed to optimize time efficiency and improve content accessibility for students. 
+Our proposed machine learning system aims to significantly enhance the learning experience for students by integrating ML models into existing EdTech platforms. For eg - 
+1. Brightspace (Contains Video lectures)
+2. NPTEL (University Learning system in India which contains a plethora of live video classes)
+
+Status Quo in Existing Services : Students must watch long, dense lecture videos to find relevant content, making learning inefficient. They often take notes, rewatch segments, or use external tools, leading to wasted time, cognitive overload, and missed information. 
+
+Value Added by the Machine Learning System: Our system lets students skip full lectures and get instant answers via an LLM-powered chatbot. 
+
+Key Benefits: 
+* Saves Time – Query specific concepts instantly. 
+* Focused Learning – Access only relevant topics. 
+* Better Retention – Structured, revisitable answers. 
+* Inclusive – Supports diverse learning needs. 
+
+Customer Scale - 
+
+Business Metric - 
+
+The system comprises of two core components: (1) a speech-to-text model that transcribes lecture videos into textual content, and (2) a Large Language Model (LLM)-powered chatbot that enables students to ask specific questions about the lecture and receive accurate, context-aware responses. This end-to-end MLOps pipeline is designed to optimize time efficiency and improve content accessibility for students. 
+
+
 
 ### Contributors
 
@@ -13,10 +33,10 @@ link to their contributions in all repos here. -->
 
 | Name                            | Responsible for | Link to their commits in this repo |
 |---------------------------------|-----------------|------------------------------------|
-| Team member 1                   |Amratanshu Shrivastava   |                                    |
-| Team member 2                   |Amey Mittal              |                                    |
-| Team member 3                   |Neha Patil               |                                    |
-| Team member 4 (if there is one) |Ruchi Jha|                                                    |
+| Amratanshu Shrivastava                   |   |                                    |
+| Amey Mittal                   |              |                                    |
+| Neha Patil                   |               |                                    |
+| Ruchi Jha                     ||                                                    |
 
 
 

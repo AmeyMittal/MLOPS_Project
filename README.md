@@ -148,9 +148,9 @@ and which optional "difficulty" points you are attempting. -->
 
 ---
 
-### 📈 Scaling & Distributed Training
+### Scaling & Distributed Training
 
-#### 🔊 Whisper ASR Fine-Tuning
+#### Whisper ASR Fine-Tuning
 
 - **Distributed Data Parallel (DDP)** will be explored to accelerate training across multiple `MI100` GPUs.
 - Experiments will compare training time and efficiency using:
@@ -158,7 +158,7 @@ and which optional "difficulty" points you are attempting. -->
   - Gradient accumulation
   - Mixed-precision training (FP16) for memory optimization
 
-#### 🧠 RAG System (LLaMA LLM)
+#### RAG System (LLaMA LLM)
 
 - Potential fine-tuning on **lecture-specific datasets** to improve domain adaptation.
 - **Ray Tune** will also be utilized here for hyperparameter optimization.

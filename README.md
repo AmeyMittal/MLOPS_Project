@@ -255,6 +255,6 @@ A hybrid **GitHub Actions + Argo Workflows** pipeline retrains Whisper when the 
 
 **Metrics**  
 - Retraining triggered after 100+ transcript errors
-- 2 retraining blocks/week allocated on `MI100` GPUs
+- 2 Retraining blocks/week allocated on `MI100` GPUs
 
 

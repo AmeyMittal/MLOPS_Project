@@ -1,25 +1,28 @@
 ## STUDY BOT - Audio Captioning and Q/A Chatbot
 
-## Value Proposition
+# Value Proposition
 Our proposed machine learning system aims to significantly enhance the learning experience for students by integrating ML models into existing EdTech platforms. For eg - 
 1. Brightspace (Contains Video lectures)
 2. NPTEL (University Learning system in India which contains a plethora of live video classes)
 
-Target Audience: The primary audience for this system is students—particularly those engaged in online or remote education via EdTech platforms, learning management systems (LMS), and educational apps. 
+# Target Audience
+The primary audience for this system is students—particularly those engaged in online or remote education via EdTech platforms, learning management systems (LMS), and educational apps. 
 
-Status Quo in Existing Services : Students must watch long, dense lecture videos to find relevant content, making learning inefficient. They often take notes, rewatch segments, or use external tools, leading to wasted time, cognitive overload, and missed information. 
+# Status Quo in Existing Services
+Students must watch long, dense lecture videos to find relevant content, making learning inefficient. They often take notes, rewatch segments, or use external tools, leading to wasted time, cognitive overload, and missed information. 
 
 Value Added by the Machine Learning System: Our system lets students skip full lectures and get instant answers via an LLM-powered chatbot.
 
-Key Benefits: 
+# Key Benefits
 * Saves Time – Query specific concepts instantly. 
 * Focused Learning – Access only relevant topics. 
 * Better Retention – Structured, revisitable answers. 
 * Inclusive – Supports diverse learning needs. 
 
-Customer Scale - On high-traffic days like finals at NYU, the Brightspace portal can experience up to 2000 students revisiting lecture content. With an average of 20 chatbot queries per student, this can result in over 40K requests in a single day—highlighting the need for a scalable and responsive system.
+# Customer Scale
+On high-traffic days like finals at NYU, the Brightspace portal can experience up to 2000 students revisiting lecture content. With an average of 20 chatbot queries per student, this can result in over 40K requests in a single day—highlighting the need for a scalable and responsive system.
 
-Business Metrics for Evaluation 
+# Business Metrics for Evaluation 
 * The impact and success of this system will be evaluated based on the following key business metrics: 
 * User Adoption Rate: Number of students who actively use the Q&A feature after lecture uploads. 
 * Time Saved: Average reduction in time spent per lecture by users who use the feature compared to those who don’t. 

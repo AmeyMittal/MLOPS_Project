@@ -41,8 +41,8 @@ link to their contributions in all repos here. -->
 | Name                            | Responsible for | Link to their commits in this repo |
 |---------------------------------|-----------------|------------------------------------|
 | Amratanshu Shrivastava                   |   |  https://github.com/AmeyMittal/StudyBot-Audio-Captioning-and-Q-A-chatbot-/commits/main?author=amratanshu                                  |
-| Amey Mittal                   |              |                                    |
-| Neha Patil                   |               |                                    |
+| Amey Mittal                   |              |  https://github.com/AmeyMittal/StudyBot-Audio-Captioning-and-Q-A-chatbot-/commits/main?author=ameymittal                                  |
+| Neha Patil                   |               |      https://github.com/AmeyMittal/StudyBot-Audio-Captioning-and-Q-A-chatbot-/commits/main?author=patilneha08                              |
 | Ruchi Jha                     ||                                                    |
 
 

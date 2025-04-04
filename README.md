@@ -126,9 +126,9 @@ and which optional "difficulty" points you are attempting. -->
   Embedding generation experiments or LLM fine-tuning are conducted using `A100` GPUs in **8-hour blocks, every two weeks**.
 
 
-### ⚙️ Experiment Tracking & Training Infrastructure
+### Experiment Tracking & Training Infrastructure
 
-#### 🧪 Experiment Tracking
+#### Experiment Tracking
 
 - **MLflow** will be used to log:
   - Model performance metrics

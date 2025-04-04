@@ -163,12 +163,12 @@ and which optional "difficulty" points you are attempting. -->
 - Potential fine-tuning on **lecture-specific datasets** to improve domain adaptation.
 - **Ray Tune** will also be utilized here for hyperparameter optimization.
 
-#### Model serving and monitoring platforms
+### Model serving and monitoring platforms
 
 <!-- Make sure to clarify how you will satisfy the Unit 6 and Unit 7 requirements, 
 and which optional "difficulty" points you are attempting. -->
 
-### Model Serving Strategy
+#### Model Serving Strategy
 
 **Strategy**  
 Both Whisper and LLaMA are deployed as containerized **FastAPI** endpoints, each hosted on separate VMs with GPU support.
@@ -192,17 +192,17 @@ Two containerized services:
 **Additional Evaluation**  
 Whisper was benchmarked across CPU, GPU, and lightweight variants to assess the cost-performance tradeoff and optimize deployment choices.
 
-#### Data pipeline
+### Data pipeline
 
 <!-- Make sure to clarify how you will satisfy the Unit 8 requirements,  and which 
 optional "difficulty" points you are attempting. -->
 
-#### Continuous X
+### Continuous X
 
 <!-- Make sure to clarify how you will satisfy the Unit 3 requirements,  and which 
 optional "difficulty" points you are attempting. -->
 
-### Infrastructure-as-Code (IaC)
+#### Infrastructure-as-Code (IaC)
 
 **Strategy**  
 All infrastructure components (VMs, GPUs, networking) are provisioned using `python-chi` scripts. Service setup and configuration are automated using **Ansible** and **Helm**.
@@ -222,7 +222,7 @@ All infrastructure components (VMs, GPUs, networking) are provisioned using `pyt
 - 1 persistent floating IP
 - GPU blocks (MI100, A100) scheduled programmatically
 
-### Cloud-Native Architecture
+#### Cloud-Native Architecture
 
 **Strategy**  
 All services are containerized (Whisper inference, RAG chatbot, retraining monitor, background tasks) and deployed as microservices. Services communicate via REST APIs.
@@ -240,7 +240,7 @@ All services are containerized (Whisper inference, RAG chatbot, retraining monit
 
 ---
 
-### CI/CD and Continuous Training
+#### CI/CD and Continuous Training
 
 **Strategy**  
 A hybrid **GitHub Actions + Argo Workflows** pipeline retrains Whisper when the system detects over 100 bad transcripts.

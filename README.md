@@ -13,7 +13,7 @@ Students must watch long, dense lecture videos to find relevant content, making 
 
 Value Added by the Machine Learning System: Our system lets students skip full lectures and get instant answers via an LLM-powered chatbot.
 
-# Key Benefits
+**Key Benefits**
 * Saves Time – Query specific concepts instantly. 
 * Focused Learning – Access only relevant topics. 
 * Better Retention – Structured, revisitable answers. 
@@ -48,6 +48,8 @@ link to their contributions in all repos here. -->
 
 
 ### System diagram
+
+![System Diagram](MACHINE LEARNING PROPOSAL.drawio.png)
 
 <!-- Overall digram of system. Doesn't need polish, does need to show all the pieces. 
 Must include: all the hardware, all the containers/software platforms, all the models, 

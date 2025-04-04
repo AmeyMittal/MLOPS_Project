@@ -49,7 +49,7 @@ link to their contributions in all repos here. -->
 
 ### System diagram
 
-![System Diagram](MACHINE LEARNING PROPOSAL.drawio.png)
+![System Diagram](system-diagram.png)
 
 <!-- Overall digram of system. Doesn't need polish, does need to show all the pieces. 
 Must include: all the hardware, all the containers/software platforms, all the models, 

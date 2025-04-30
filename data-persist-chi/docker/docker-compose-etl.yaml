@@ -1,0 +1,135 @@
+version: '3.8'
+
+volumes:
+  audio_data:
+
+services:
+  extract-audio:
+    container_name: etl_extract_audio
+    image: python:3.11
+    user: root
+    volumes:
+      - audio_data:/data
+    working_dir: /data
+    command:
+      - bash
+      - -c
+      - |
+        set -e
+        mkdir -p nptel_dataset && cd nptel_dataset
+
+        echo "Downloading TEST dataset parts..."
+        wget https://zenodo.org/record/4596746/files/nptel-test.tar.gz.partaa
+        wget https://zenodo.org/record/4596748/files/nptel-test.tar.gz.partab
+        wget https://zenodo.org/record/4596751/files/nptel-test.tar.gz.partac
+        cat nptel-test.tar.gz.part* > nptel-test.tar.gz
+        rm nptel-test.tar.gz.part*
+        tar -xvzf nptel-test.tar.gz
+        rm nptel-test.tar.gz
+
+        echo "Downloading TRAIN dataset parts..."
+        wget https://zenodo.org/record/4590121/files/nptel-train.tar.gz.partaa
+        wget https://zenodo.org/record/4590910/files/nptel-train.tar.gz.partab
+        wget https://zenodo.org/record/4590927/files/nptel-train.tar.gz.partac
+        wget https://zenodo.org/record/4591351/files/nptel-train.tar.gz.partad
+        wget https://zenodo.org/record/4591367/files/nptel-train.tar.gz.partae
+        wget https://zenodo.org/record/4591412/files/nptel-train.tar.gz.partaf
+        wget https://zenodo.org/record/4591424/files/nptel-train.tar.gz.partag
+        wget https://zenodo.org/record/4591448/files/nptel-train.tar.gz.partah
+        wget https://zenodo.org/record/4591458/files/nptel-train.tar.gz.partai
+        wget https://zenodo.org/record/4591466/files/nptel-train.tar.gz.partaj
+        wget https://zenodo.org/record/4593165/files/nptel-train.tar.gz.partak
+        wget https://zenodo.org/record/4593170/files/nptel-train.tar.gz.partal
+        wget https://zenodo.org/record/4593172/files/nptel-train.tar.gz.partam
+        wget https://zenodo.org/record/4593180/files/nptel-train.tar.gz.partan
+        wget https://zenodo.org/record/4593184/files/nptel-train.tar.gz.partao
+        wget https://zenodo.org/record/4593186/files/nptel-train.tar.gz.partap
+        wget https://zenodo.org/record/4593188/files/nptel-train.tar.gz.partaq
+        wget https://zenodo.org/record/4593192/files/nptel-train.tar.gz.partar
+        wget https://zenodo.org/record/4593195/files/nptel-train.tar.gz.partas
+        wget https://zenodo.org/record/4593199/files/nptel-train.tar.gz.partat
+        cat nptel-train.tar.gz.part* > nptel-train.tar.gz
+        rm nptel-train.tar.gz.part*
+        tar -xvzf nptel-train.tar.gz
+        rm nptel-train.tar.gz
+
+        echo "Downloading VALIDATION dataset parts..."
+        wget https://zenodo.org/record/4596733/files/nptel-valid.tar.gz.partaa
+        wget https://zenodo.org/record/4596738/files/nptel-valid.tar.gz.partab
+        wget https://zenodo.org/record/4596742/files/nptel-valid.tar.gz.partac
+        cat nptel-valid.tar.gz.part* > nptel-valid.tar.gz
+        rm nptel-valid.tar.gz.part*
+        tar -xvzf nptel-valid.tar.gz
+        rm nptel-valid.tar.gz
+
+        echo "Finished extracting all splits."
+
+  transform-audio:
+    container_name: etl_transform_audio
+    image: python:3.11
+    volumes:
+      - audio_data:/data
+    working_dir: /data/nptel_dataset
+    command:
+      - bash
+      - -c
+      - |
+        set -e
+        echo "Organizing files into paired format..."
+
+        for SPLIT in nptel-train nptel-valid nptel-test; do
+          echo "Processing $SPLIT"
+          cd /data/nptel_dataset/$SPLIT
+          mkdir -p paired
+
+          python3 -c '
+import os
+split_dir = "."
+paired_dir = "paired"
+os.makedirs(paired_dir, exist_ok=True)
+
+wavs = {f[:-4] for f in os.listdir(split_dir) if f.endswith(".wav")}
+txts = {f[:-4] for f in os.listdir(split_dir) if f.endswith(".txt")}
+common = wavs & txts
+
+for name in common:
+    os.rename(f"{name}.wav", os.path.join(paired_dir, f"{name}.wav"))
+    os.rename(f"{name}.txt", os.path.join(paired_dir, f"{name}.txt"))
+
+missing = wavs ^ txts
+if missing:
+    print("Warning: Unmatched files:", missing)
+          '
+
+          echo "Done organizing $SPLIT"
+          cd /data/nptel_dataset
+        done
+
+  load-audio:
+    container_name: etl_load_audio
+    image: rclone/rclone:latest
+    volumes:
+      - audio_data:/data
+      - ~/.config/rclone/rclone.conf:/root/.config/rclone/rclone.conf:ro
+    entrypoint: /bin/sh
+    command:
+      - -c
+      - |
+        if [ -z "$RCLONE_CONTAINER" ]; then
+          echo "ERROR: RCLONE_CONTAINER is not set"
+          exit 1
+        fi
+
+        echo "Uploading TRAIN split..."
+        rclone copy /data/nptel_dataset/nptel-train/paired chi_tacc:$RCLONE_CONTAINER/train \
+          --progress --transfers=16 --checkers=8 --multi-thread-streams=4
+
+        echo "Uploading VALID split..."
+        rclone copy /data/nptel_dataset/nptel-valid/paired chi_tacc:$RCLONE_CONTAINER/valid \
+          --progress --transfers=16 --checkers=8 --multi-thread-streams=4
+
+        echo "Uploading TEST split..."
+        rclone copy /data/nptel_dataset/nptel-test/paired chi_tacc:$RCLONE_CONTAINER/test \
+          --progress --transfers=16 --checkers=8 --multi-thread-streams=4
+
+        echo "Upload complete!"

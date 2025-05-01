@@ -38,6 +38,7 @@ services:
     image: python:3.11
     volumes:
       - audio_data:/data
+      - ./pair_files.py:/pair_files.py  # ✅ mounts your script into the container
     working_dir: /data/nptel_dataset
     command:
       - bash
@@ -45,9 +46,11 @@ services:
       - |
         set -e
 
-        echo "This is a placeholder for transforming the dataset (e.g., organizing into paired/)."
-        echo "You can manually organize the .wav and .txt files into a paired/ directory."
-        ls -lh
+        echo "Running pairing script..."
+        python3 /pair_files.py
+
+        echo "Done. Listing paired files:"
+        ls -lh paired
 
   load-data:
     container_name: etl_load_data
@@ -77,4 +80,5 @@ services:
 
         echo "Verifying upload..."
         rclone lsd chi_tacc:$RCLONE_CONTAINER
+
 

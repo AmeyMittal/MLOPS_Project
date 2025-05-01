@@ -82,24 +82,24 @@ services:
           cd /data/nptel_dataset/$SPLIT
           mkdir -p paired
 
-          python3 -c '
+          python3 -c "
 import os
-split_dir = "."
-paired_dir = "paired"
+split_dir = '.'
+paired_dir = 'paired'
 os.makedirs(paired_dir, exist_ok=True)
 
-wavs = {f[:-4] for f in os.listdir(split_dir) if f.endswith(".wav")}
-txts = {f[:-4] for f in os.listdir(split_dir) if f.endswith(".txt")}
+wavs = {f[:-4] for f in os.listdir(split_dir) if f.endswith('.wav')}
+txts = {f[:-4] for f in os.listdir(split_dir) if f.endswith('.txt')}
 common = wavs & txts
 
 for name in common:
-    os.rename(f"{name}.wav", os.path.join(paired_dir, f"{name}.wav"))
-    os.rename(f"{name}.txt", os.path.join(paired_dir, f"{name}.txt"))
+    os.rename(f'{name}.wav', os.path.join(paired_dir, f'{name}.wav'))
+    os.rename(f'{name}.txt', os.path.join(paired_dir, f'{name}.txt'))
 
 missing = wavs ^ txts
 if missing:
-    print("Warning: Unmatched files:", missing)
-          '
+    print('Warning: Unmatched files:', missing)
+          "
 
           echo "Done organizing $SPLIT"
           cd /data/nptel_dataset
@@ -133,3 +133,4 @@ if missing:
           --progress --transfers=16 --checkers=8 --multi-thread-streams=4
 
         echo "Upload complete!"
+

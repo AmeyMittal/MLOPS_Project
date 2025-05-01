@@ -38,17 +38,15 @@ services:
     image: python:3.11
     volumes:
       - audio_data:/data
-      - ./pair_files.py:/pair_files.py  # ✅ mounts your script into the container
-    working_dir: /data/nptel_dataset
+      - ./pair_files.py:/pair_files.py  # Mount the Python script
+    working_dir: /data/nptel_dataset/nptel-pure  # Go directly into wav/corrected_txt folder parent
     command:
       - bash
       - -c
       - |
         set -e
-
         echo "Running pairing script..."
         python3 /pair_files.py
-
         echo "Done. Listing paired files:"
         ls -lh paired
 
@@ -71,7 +69,7 @@ services:
         rclone delete chi_tacc:$RCLONE_CONTAINER --rmdirs || true
 
         echo "Uploading paired audio files..."
-        rclone copy /data/nptel_dataset/paired chi_tacc:$RCLONE_CONTAINER/paired \
+        rclone copy /data/nptel_dataset/nptel-pure/paired chi_tacc:$RCLONE_CONTAINER/paired \
           --progress \
           --transfers=32 \
           --checkers=16 \
@@ -80,5 +78,6 @@ services:
 
         echo "Verifying upload..."
         rclone lsd chi_tacc:$RCLONE_CONTAINER
+
 
 

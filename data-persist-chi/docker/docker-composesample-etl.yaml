@@ -46,10 +46,9 @@ services:
         set -e
 
         echo "Organizing .wav and .txt into paired/ folder..."
-
         mkdir -p paired
 
-        python3 -c "
+        python3 - <<EOF
 import os
 
 wavs = {f[:-4] for f in os.listdir('.') if f.endswith('.wav')}
@@ -59,13 +58,13 @@ common = wavs & txts
 os.makedirs('paired', exist_ok=True)
 
 for name in common:
-    os.rename(f'{name}.wav', os.path.join('paired', f'{name}.wav'))
-    os.rename(f'{name}.txt', os.path.join('paired', f'{name}.txt'))
+    os.rename(f"{name}.wav", os.path.join("paired", f"{name}.wav"))
+    os.rename(f"{name}.txt", os.path.join("paired", f"{name}.txt"))
 
 missing = wavs ^ txts
 if missing:
-    print('Warning: Unmatched files:', missing)
-        "
+    print("Warning: Unmatched files:", missing)
+EOF
 
         echo "Paired files:"
         ls -1 paired | wc -l

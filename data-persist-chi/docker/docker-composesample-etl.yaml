@@ -1,7 +1,5 @@
 version: '3.8'
 
-name: nptel-audio-etl
-
 volumes:
   audio_data:
 

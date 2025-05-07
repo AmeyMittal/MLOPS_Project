@@ -65,9 +65,9 @@ services:
           exit 1
         fi
 
-        echo "Cleaning up existing contents of container..."
-        rclone delete chi_tacc:$RCLONE_CONTAINER --rmdirs || true
-
+        #echo "Cleaning up existing contents of container..."
+        #rclone delete chi_tacc:$RCLONE_CONTAINER --rmdirs || true
+        
         echo "Uploading paired audio files..."
         rclone copy /data/nptel_dataset/paired chi_tacc:$RCLONE_CONTAINER/paired \
           --progress \

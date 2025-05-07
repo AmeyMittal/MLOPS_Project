@@ -3,7 +3,7 @@ import shutil
 
 wav_dir = "nptelfinal/wav"
 txt_dir = "nptelfinal/txt"
-out_dir = "/data/paired"
+out_dir = "mnt/data/paired"
 
 # Ensure output directory exists
 os.makedirs(out_dir, exist_ok=True)

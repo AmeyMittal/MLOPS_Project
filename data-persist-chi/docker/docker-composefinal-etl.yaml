@@ -37,9 +37,9 @@ services:
     container_name: etl_transform_data
     image: python:3.11
     volumes:
-      - audio_data:/data
-      - ./pair_files.py:/pair_files.py  # Mount your pairing script
-    working_dir: /data/nptel_dataset
+      - /home/cc/StudyBot-Audio-Captioning-and-Q-A-chatbot-/data-persist-chi:/mnt/data
+      - ./pair_files.py:/pair_files.py
+    working_dir: /mnt/data/nptel_dataset/nptelfinal
     command:
       - bash
       - -c
@@ -47,8 +47,8 @@ services:
         set -e
         echo "Running pairing script..."
         python3 /pair_files.py
-        echo "Done. Listing paired files:"
-        ls -lh paired
+        echo "✅ Done. Listing paired files:"
+        ls -lh /mnt/data/paired
 
   load-data:
     container_name: etl_load_data

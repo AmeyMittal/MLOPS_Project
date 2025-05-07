@@ -1,9 +1,9 @@
 import os
 import shutil
 
-wav_dir = "nptelfinal/wav"
-txt_dir = "nptelfinal/txt"
-out_dir = "mnt/data/paired"
+wav_dir = "wav"
+txt_dir = "txt"
+out_dir = "/mnt/data/paired"  # absolute path
 
 # Ensure output directory exists
 os.makedirs(out_dir, exist_ok=True)
@@ -24,3 +24,4 @@ if missing:
     print("Warning: Unmatched files:", missing)
 else:
     print(f"✅ Paired {len(common)} files.")
+

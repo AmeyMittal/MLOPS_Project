@@ -3,7 +3,7 @@ import shutil
 
 wav_dir = "nptelfinal/wav"
 txt_dir = "nptelfinal/txt"
-out_dir = "/mnt/data/paired"  # absolute path
+out_dir = "/mnt/data/paired"  
 
 # Ensure output directory exists
 os.makedirs(out_dir, exist_ok=True)
@@ -12,6 +12,7 @@ os.makedirs(out_dir, exist_ok=True)
 wavs = {f[:-4] for f in os.listdir(wav_dir) if f.endswith('.wav')}
 txts = {f[:-4] for f in os.listdir(txt_dir) if f.endswith('.txt')}
 common = wavs & txts
+
 
 # Copy matched files
 for name in common:
@@ -24,4 +25,5 @@ if missing:
     print("Warning: Unmatched files:", missing)
 else:
     print(f"✅ Paired {len(common)} files.")
+
 

@@ -1,8 +1,8 @@
 import os
 import shutil
 
-wav_dir = "wav"
-txt_dir = "txt"
+wav_dir = "nptelfinal/wav"
+txt_dir = "nptelfinal/txt"
 out_dir = "/mnt/data/paired"  # absolute path
 
 # Ensure output directory exists

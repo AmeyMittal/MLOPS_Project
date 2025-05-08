@@ -39,12 +39,13 @@ Then, each row after that is: name of contributor, their role, and in the third 
 you will link to their contributions. If your project involves multiple repos, you will 
 link to their contributions in all repos here. -->
 
-| Name                            | Responsible for | Link to their commits in this repo |
-|---------------------------------|-----------------|------------------------------------|
-| Amratanshu Shrivastava                   |   |  https://github.com/AmeyMittal/StudyBot-Audio-Captioning-and-Q-A-chatbot-/commits/main?author=amratanshu                                  |
-| Amey Mittal                   |              |  https://github.com/AmeyMittal/StudyBot-Audio-Captioning-and-Q-A-chatbot-/commits/main?author=ameymittal                                  |
-| Neha Patil                   |               |      https://github.com/AmeyMittal/StudyBot-Audio-Captioning-and-Q-A-chatbot-/commits/main?author=patilneha08                              |
-| Ruchi Jha                     ||     https://github.com/AmeyMittal/StudyBot-Audio-Captioning-and-Q-A-chatbot-/commits/main?author=RuchiMJha                                    |
+| Name                   | Responsible for             | Link to their commits in this repo                                                                 |
+|------------------------|-----------------------------|------------------------------------------------------------------------------------------------------|
+| Amratanshu Shrivastava | Model training              | [Commits](https://github.com/AmeyMittal/StudyBot-Audio-Captioning-and-Q-A-chatbot-/commits/main?author=amratanshu) |
+| Amey Mittal            | Model serving and inference | [Commits](https://github.com/AmeyMittal/StudyBot-Audio-Captioning-and-Q-A-chatbot-/commits/main?author=ameymittal) |
+| Neha Patil             | Data pipeline               | [Commits](https://github.com/AmeyMittal/StudyBot-Audio-Captioning-and-Q-A-chatbot-/commits/main?author=patilneha08) |
+| Ruchi Jha              | Continuous X pipeline       | [Commits](https://github.com/AmeyMittal/StudyBot-Audio-Captioning-and-Q-A-chatbot-/commits/main?author=RuchiMJha)   |
+
 
 
 

@@ -8,7 +8,7 @@ clouds:
       auth_url: https://kvm.tacc.chameleoncloud.org:5000
       
       application_credential_id: "9fc2e668dad9499299b2c8bb080d8371"
-      application_credential_secret: "dn2sKXZY9DDVxeMaRs_jO0g3MckZEUopaHw-Tk3iwIquv894RAFyY0XKQpyKmSI9wI1O6DwwTRjcU7lsarTcSw"
+      application_credential_secret: "generic secret to avoid github secret leak"
     
       
         

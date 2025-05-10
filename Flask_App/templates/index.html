@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Whisper Transcription</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+  <body>
+    <h2>Upload Audio for Transcription</h2>
+    <form action="/transcribe" method="post" enctype="multipart/form-data">
+      <input type="file" name="file" accept="audio/*" required><br><br>
+      <button type="submit">Transcribe</button>
+    </form>
+  </body>
+</html>
+

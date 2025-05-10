@@ -26,7 +26,7 @@ import os
 from datasets import Dataset
 from tqdm import tqdm
 
-data_dir = "/mnt/object/paired"
+data_dir = "/mnt/nptel/paired"
 samples = []
 
 # Wrap with tqdm for progress

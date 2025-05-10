@@ -26,7 +26,7 @@ import os
 from datasets import Dataset
 from tqdm import tqdm
 
-data_dir = "/mnt/nptel/paired"
+data_dir = "/mnt/object/paired"
 samples = []
 
 # Wrap with tqdm for progress
@@ -41,6 +41,7 @@ for fname in tqdm(os.listdir(data_dir), desc="Loading data"):
                 transcript = f.read().strip()
             samples.append({"audio": audio_path, "text": transcript})
 
+print(f"Total samples loaded: {len(samples)}")
 ds = Dataset.from_list(samples)
 
 ds = ds.train_test_split(test_size=0.1, seed=42)

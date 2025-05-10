@@ -2,16 +2,15 @@ import transformers
 print(transformers.__version__)
 
 
-gpu_info = get_ipython().getoutput('nvidia-smi')
-gpu_info = '\n'.join(gpu_info)
-if gpu_info.find('failed') >= 0:
-  print('Not connected to a GPU')
+import torch
+
+if torch.cuda.is_available():
+    print("Using GPU:", torch.cuda.get_device_name(0))
 else:
-  print(gpu_info)
+    print("No GPU available.")
 
 
 import random
-import torch
 from datasets import load_dataset, Audio, DatasetDict
 from transformers import (
     WhisperProcessor,

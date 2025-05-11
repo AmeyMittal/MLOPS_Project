@@ -9,8 +9,8 @@ cinder = clients.cinder()
 # Create the volume
 volume = cinder.volumes.create(
     size=30,  # Size in GB
-    name="block-persist-test",
+    name="block-persist-project48",
     volume_type="standard"
 )
 
-print(f"✅ Created volume: {volume.name}, Size: {volume.size}GB")
+print(f" Created volume: {volume.name}, Size: {volume.size}GB")

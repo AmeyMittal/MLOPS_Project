@@ -66,3 +66,4 @@ resource "openstack_networking_floatingip_v2" "floating_ip" {
   description = "MLOps IP for ${var.suffix}"
   port_id     = openstack_networking_port_v2.sharednet2_ports["node1"].id
 }
+

@@ -3,6 +3,11 @@
 Fine‑tune Whisper‑small on a pre‑prepared dataset directory.
 """
 
+import mlflow
+mlflow.set_tracking_uri("http://129.114.26.114:8000/")
+mlflow.enable_system_metrics_logging()
+mlflow.transformers.autolog(log_models=True)
+
 import os, argparse, evaluate, torch
 from datasets import load_from_disk
 from transformers import (
@@ -87,11 +92,12 @@ def main(args):
         tokenizer=processor.tokenizer,
     )
 
-    processor.save_pretrained(training_args.output_dir)   # save config/tokeniser
-    trainer.train()
-    trainer.save_model(os.path.join(training_args.output_dir, "whisper-small-finetuned"))
-    processor.save_pretrained(os.path.join(training_args.output_dir, "whisper-small-finetuned"))
-    print("🏁  Training complete.")
+    with mlflow.start_run(run_name="whisper_small_finetune"):
+        trainer.train()
+        trainer.save_model(os.path.join(training_args.output_dir, "whisper-small-finetuned"))
+        processor.save_pretrained(os.path.join(training_args.output_dir, "whisper-small-finetuned"))
+
+print("🏁  Training complete.")
 
 if __name__ == "__main__":
     p = argparse.ArgumentParser()
@@ -105,7 +111,7 @@ if __name__ == "__main__":
     main(args)
 
 
-# Run Training 
+# Run Training
 
 # python train_whisper_small.py \
 #   --data_dir  ./prepared_nptel \

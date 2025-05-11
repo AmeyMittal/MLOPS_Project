@@ -11,3 +11,4 @@ jiwer
 tensorboard
 gradio
 mlflow
+boto3

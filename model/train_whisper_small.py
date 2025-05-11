@@ -94,10 +94,20 @@ def main(args):
 
     with mlflow.start_run(run_name="whisper_small_finetune"):
         trainer.train()
-        trainer.save_model(os.path.join(training_args.output_dir, "whisper-small-finetuned"))
-        processor.save_pretrained(os.path.join(training_args.output_dir, "whisper-small-finetuned"))
+        output_path = os.path.join(training_args.output_dir, "whisper-small-finetuned")
+        
+        trainer.save_model(output_path)
+        processor.save_pretrained(output_path)
 
-print("🏁  Training complete.")
+        # Log model artifacts
+        mlflow.log_artifacts(output_path, artifact_path="whisper_model")
+
+        # Log training args
+        with open(os.path.join(output_path, "training_args.txt"), "w") as f:
+            f.write(str(training_args))
+        mlflow.log_artifact(os.path.join(output_path, "training_args.txt"), artifact_path="configs")
+
+    print("🏁  Training complete.")
 
 if __name__ == "__main__":
     p = argparse.ArgumentParser()

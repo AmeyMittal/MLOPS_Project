@@ -1,6 +1,6 @@
 # ── Artifacts ───────────────────────────────────────────────
 # Ignore any .safetensors checkpoints saved in artifacts/
-artifacts/*.safetensors
+artifacts/whisper-small-finetune/*.safetensors
 
 # ── Datasets ────────────────────────────────────────────────
 # Ignore everything inside the dataset/ directory

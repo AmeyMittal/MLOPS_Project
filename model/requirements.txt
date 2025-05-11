@@ -10,3 +10,4 @@ evaluate
 jiwer
 tensorboard
 gradio
+mlflow

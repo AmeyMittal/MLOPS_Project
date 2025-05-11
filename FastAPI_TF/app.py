@@ -1,6 +1,7 @@
 from fastapi import FastAPI, UploadFile, File
 import whisper
 import tempfile
+from prometheus_fastapi_instrumentator import Instrumentator
 
 app = FastAPI(title="Whisper Transcription API")
 
@@ -18,3 +19,5 @@ async def transcribe(file: UploadFile = File(...)):
         return {"transcript": result["text"]}
     except Exception as e:
         return {"error": str(e)}
+
+Instrumentator().instrument(app).expose(app)

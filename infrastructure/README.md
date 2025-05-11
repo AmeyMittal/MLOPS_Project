@@ -41,6 +41,7 @@ This script provisions a 30GB block storage volume named block-persist-project48
 
 Run the script:
 
+pip install python-chi
 python3 infrastructure/provision_block_storage.py
 
 Verification

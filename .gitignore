@@ -1,1 +1,7 @@
-dataset/artifacts/*.safetensors
+# ── Artifacts ───────────────────────────────────────────────
+# Ignore any .safetensors checkpoints saved in artifacts/
+artifacts/*.safetensors
+
+# ── Datasets ────────────────────────────────────────────────
+# Ignore everything inside the dataset/ directory
+dataset/

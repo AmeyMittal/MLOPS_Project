@@ -103,66 +103,37 @@ and which optional "difficulty" points you are attempting. -->
 
 ### Training and Re-Training Strategy
 
-#### Whisper ASR Model
+#### Whisper ASR Model - Fine Tuning
 
-- **Initial Training**
-  Fine-tuned on a combined dataset of [Clotho](https://zenodo.org/records/3490684) and a curated subset of [NPTEL2020](https://github.com/AI4Bharat/NPTEL2020-Indian-English-Speech-Dataset/blob/master/README.md) to adapt to Indo-English lecture audio.
+- **Initial Training**  
+  Fine-tuned on the full [NPTEL2020](https://github.com/AI4Bharat/NPTEL2020-Indian-English-Speech-Dataset/blob/master/README.md) dataset to adapt to Indo-English lecture audio.
 
-- **Re-Training Trigger**
+- **Re-Training Trigger**  
   Retraining is initiated when the system accumulates more than **100 incorrect transcripts**. Users are prompted to correct these transcripts, and their inputs are used as **new ground truth** for fine-tuning.
 
-- **GPU Resources**
-  `MI100` GPUs, in **4-hour blocks, twice a week**, are allocated for training and re-training tasks.
+- **GPU Resources**  
+  Used Compute-GigaIO leases (NVIDIA A100 80 GB) for both training and re-training tasks.
 
-- **Experiment Tracking**
-  All training runs, dataset versions, and fine-tuning iterations are logged using **MLflow** or **Weights & Biases (W&B)** for reproducibility and transparency.
-
----
-#### LLaMA LLM (RAG System)
-
-- **Primary Usage**:  
-  LLaMA is used to answer user queries based on transcripts generated from lecture audio, powered by a **Retrieval-Augmented Generation (RAG)** pipeline.
-
-- **Experimentation & Fine-Tuning**:  
-  Embedding generation experiments or LLM fine-tuning are conducted using `A100` GPUs in **8-hour blocks, every two weeks**.
+- **Experiment Tracking**  
+  All training runs, dataset versions, and fine-tuning iterations are logged using **MLflow** for reproducibility and transparency.
 
 
 ### Experiment Tracking & Training Infrastructure
 
 #### Experiment Tracking
 
-- **MLflow** will be used to log:
-  - Model performance metrics
-  - Inference speed
-  - Chatbot accuracy over time
+- **MLflow** used for:  
+  - Logging hyperparameters  
+  - Capturing system metrics  
+  - Recording model performance metrics  
+  - Storing model artifacts (full deserialized weights in `model.safetensors`), tokenizer & config files, and training arguments  
+  - These are all stored in a MinIO bucket called `mlflow-artifacts`
 
----
+- **MinIO** used for:  
+  - Connected to our block storage backend  
+  - Bucket `userfeedback` contains user-uploaded WAV files and corrected transcripts (misclassification cases)  
+  - This bucket provides new data to the re-training workflow  
 
-### Job Scheduling with Ray Cluster
-
-- **Ray Cluster** will manage parallelized experimentation, especially for LLaMA-based workflows.
-- **Hyperparameter tuning** (e.g., batch size, retrieval depth, learning rate) is handled via **Ray Tune**.
-- **Ray Train** will be used during LLaMA fine-tuning to provide:
-  - Fault tolerance
-  - Model checkpointing
-  - Scalable distributed training
-
----
-
-### Scaling & Distributed Training
-
-#### Whisper ASR Fine-Tuning
-
-- **Distributed Data Parallel (DDP)** will be explored to accelerate training across multiple `MI100` GPUs.
-- Experiments will compare training time and efficiency using:
-  - Single GPU vs. Multi-GPU setups
-  - Gradient accumulation
-  - Mixed-precision training (FP16) for memory optimization
-
-#### RAG System (LLaMA LLM)
-
-- Potential fine-tuning on **lecture-specific datasets** to improve domain adaptation.
-- **Ray Tune** will also be utilized here for hyperparameter optimization.
 
 ### Model serving and monitoring platforms
 
@@ -203,7 +174,15 @@ optional "difficulty" points you are attempting. -->
 <!-- Make sure to clarify how you will satisfy the Unit 3 requirements,  and which 
 optional "difficulty" points you are attempting. -->
 
-#### Infrastructure-as-Code (IaC)
+
+
+
+
+
+
+
+
+<!-- #### Infrastructure-as-Code (IaC)
 
 **Strategy**  
 All infrastructure components (VMs, GPUs, networking) are provisioned using `python-chi` scripts. Service setup and configuration are automated using **Ansible** and **Helm**.
@@ -258,4 +237,4 @@ A hybrid **GitHub Actions + Argo Workflows** pipeline retrains Whisper when the 
 - Retraining triggered after 100+ transcript errors
 - 2 Retraining blocks/week allocated on `MI100` GPUs
 
-
+ -->

@@ -79,7 +79,7 @@ Here’s what the MinIO “mlflow-artifacts” bucket looks like:
 
 ![mlflow bucket contents](minio-mlflow-bucket-contents.png)
 
-## Model artifacts on minio bucket->
+## minio bucket visible->
 
 ![Model artifacts on minio bucket](minio-bucket-visible.png)
 

@@ -12,7 +12,7 @@ After concatenating and extracting the full archive, a **10GB subset** was curat
 
 **Original Dataset:** [https://github.com/AI4Bharat/NPTEL2020-Indian-English-Speech-Dataset]
 
-**Hugging Face Link:** [NPTEL Dataset on Hugging Face](https://huggingface.co/datasets/nehapatil08/nptel-dataset)
+**Hugging Face Link:** [https://huggingface.co/datasets/nehapatil08/nptel-dataset/resolve/main/nptelfinal.zip)
 
 **Structure:**
 

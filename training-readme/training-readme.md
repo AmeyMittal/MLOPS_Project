@@ -26,6 +26,9 @@ Navigate to the training folder -> https://github.com/AmeyMittal/StudyBot-Audio-
 
 In this folder (in bash) ->
 
+0. Pip install dependencies using ->
+pip install -r requirements.txt
+
 1. Prepare data 
 
 python prepare_nptel_dataset.py

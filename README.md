@@ -91,6 +91,29 @@ The table below shows an example, it is not a recommendation. -->
 
 ### Training and Re-Training Strategy
 
+File Links ->
+
+Following Commits by Amratanshu: https://github.com/amratanshu
+
+Server provisioning jupyter notebooks -> https://github.com/AmeyMittal/StudyBot-Audio-Captioning-and-Q-A-chatbot-/tree/main/provisioning
+
+For details regarding training pipeline and commands, view this readme -> https://github.com/AmeyMittal/StudyBot-Audio-Captioning-and-Q-A-chatbot-/blob/main/training-readme/training-readme.md
+
+To view training screenshots, view folder here -> https://github.com/AmeyMittal/StudyBot-Audio-Captioning-and-Q-A-chatbot-/tree/main/training-readme
+
+Requirements (pip dependencies for training) -> https://github.com/AmeyMittal/StudyBot-Audio-Captioning-and-Q-A-chatbot-/blob/main/model-training/requirements.txt
+
+Data preparation file -> https://github.com/AmeyMittal/StudyBot-Audio-Captioning-and-Q-A-chatbot-/blob/main/model-training/prepare_nptel_dataset.py
+
+Training Jupyter Notebook -> https://github.com/AmeyMittal/StudyBot-Audio-Captioning-and-Q-A-chatbot-/blob/main/model-training/audio_trancripting%20-%20gpu.ipynb
+
+Training Python executable file -> https://github.com/AmeyMittal/StudyBot-Audio-Captioning-and-Q-A-chatbot-/blob/main/model-training/train_whisper_small.py
+
+Retraining Python executable file -> https://github.com/AmeyMittal/StudyBot-Audio-Captioning-and-Q-A-chatbot-/blob/main/model-training/retraining.py
+
+Docker file to set up mlflow, minio, minio bucket creation, postgres -> https://github.com/AmeyMittal/StudyBot-Audio-Captioning-and-Q-A-chatbot-/blob/main/ansible/k8s/docker-compose-data.yaml
+
+
 #### Whisper ASR Model - Fine Tuning
 
 - **Initial Training**  

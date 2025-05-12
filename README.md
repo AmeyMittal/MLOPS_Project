@@ -266,11 +266,22 @@ This pipeline ensures robust offline storage, consistent data validation, and re
 
 ### Continuous X
 
-- Installed Terraform v1.10.5, configured the system PATH, and initialized infrastructure setup.
-- Configured Terraform environment using clouds.yaml, TF_VAR_suffix=project48, and TF_VAR_key=id_rsa_chameleon2.
-- Installed Ansible core v2.16.9 and Ansible v9.8.0, set up ansible.cfg, and verified the node connectivity.
-- Installed Kubespray dependencies and deployed a Kubernetes cluster using pre_k8s, cluster.yml, and post_k8s Ansible playbooks.
-- Deployed Kubernetes, ArgoCD and Argo Workflows using Ansible playbooks (argocd_add_platform.yml and workflow_build_init.yml).
+- Installed Terraform v1.10.5 manually in the Chameleon Jupyter environment.
+- Set the system PATH to include the local Terraform binary.
+- Copied clouds.yaml to /work/studybot-iac/tf/kvm/clouds.yaml.
+- Navigated to the Terraform directory and initialized Terraform (terraform init).
+- Set Terraform environment variables TF_VAR_suffix=project48 and TF_VAR_key=id_rsa_chameleon2.
+- Ran terraform validate, terraform plan, and terraform apply -auto-approve to provision infrastructure.
+- Installed ansible-core==2.16.9 and ansible==9.8.0 using pip.
+- Set environment variables for Ansible and Python user base.
+- Copied ansible.cfg to the working directory.
+- Ran ansible -i inventory.yml all -m ping to test node connectivity.
+- Installed Kubespray dependencies using requirements.txt.
+- Ran pre_k8s_configure.yml Ansible playbook to prepare nodes.
+- Used Kubespray to deploy Kubernetes via cluster.yml.
+- Ran post_k8s_configure.yml to finalize Kubernetes setup.
+- Ran argocd_add_platform.yml to install and configure ArgoCD on the cluster.
+- Ran workflow_build_init.yml to set up Argo Workflows.
 
 
 

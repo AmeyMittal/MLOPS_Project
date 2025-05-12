@@ -64,13 +64,11 @@ Name of data/model, conditions under which it was created (ideally with links/re
 conditions under which it may be used. -->
 
 ### 📚 Datasets and Models Used
-
-| Item              | How it was Created                                                                                                                                                                                                                                                                                                           | Conditions of Use                                                                                                               |
-|-------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------|
+| Item                                                                                                           | How it was Created                                                                                                                                                                                                                                                                                                           | Conditions of Use                                                                                                               |
+|---------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------|
 | [NPTEL2020 Dataset](https://github.com/AI4Bharat/NPTEL2020-Indian-English-Speech-Dataset/blob/master/README.md) | A Speech-to-Text dataset created by AI4Bharat using lecture recordings from the NPTEL platform. Audio was segmented and manually transcribed. Clips with noise or poor quality were filtered out to ensure high transcription accuracy, representing diverse Indian English accents.                         | Released under a Creative Commons license for **research and educational use**.                                                |
-| [Clotho Dataset](https://zenodo.org/records/3490684) ([Paper](https://arxiv.org/abs/1910.09387)) | A dataset for **audio captioning** (not speech-to-text), with 4,981 audio clips (15–30s) and 24,905 free-text captions (8–20 words). Audio is from Freesound, and captions are crowdsourced via Amazon Mechanical Turk. Post-processing removes named entities, speech, and uncommon words.                | Freely available for **research use**.                                                                                          |
-| [Whisper (OpenAI)](https://github.com/openai/whisper) | A multilingual speech recognition model trained on 680,000 hours of web audio. Handles diverse accents, background noise, and both English and non-English speech using a transformer-based architecture for robust ASR performance.                                                                   | Released under the **MIT License** – free for **commercial and non-commercial** use with modification and distribution rights. |
-| [LLaMA (Meta AI)](https://www.llama.com/) | A large transformer-based language model trained on open datasets (e.g., Wikipedia, Books, GitHub). Designed to be efficient and scalable, with several model sizes available.                                                                                                                           | Released under a **non-commercial research license** – only for **academic and research** use.                                 |
+| [Whisper (OpenAI)](https://github.com/openai/whisper)                                                           | A multilingual speech recognition model trained on 680,000 hours of web audio. Handles diverse accents, background noise, and both English and non-English speech using a transformer-based architecture for robust ASR performance.                                                                   | Released under the **MIT License** – free for **commercial and non-commercial** use with modification and distribution rights. |
+
 
 
 
@@ -85,25 +83,18 @@ The table below shows an example, it is not a recommendation. -->
 | m1.medium VMs                     | 3 for entire project duration     | One for the QA API service, one for Whisper inference, one for managing background tasks like data cleanup and user feedback processing |
 | GPU (Compute GigaIO A100)         | Four 6-hour leases                 | Used for training and re-training tasks                                                                   |
 | Floating IPs                      | 1 for entire project duration, 1 for sporadic use | One stable IP for the API endpoint, one temporary IP for occasional testing or re-deployment         |
-| Block storage                     | 30 GB for persistent storage       | To store audio files, transcripts, processed feedback, embeddings, and logs across model runs            |
-| Object storage                    | 2 TB total, expandable as needed   | For storing raw audio (NPTEL dataset), model checkpoints, and backups                                    |
+| Block storage                     | 30 GB for persistent storage       | To store audio files, transcripts, processed feedback, and logs across model runs            |
+| Object storage                    | 10GB total, expandable as needed   | For storing raw audio (NPTEL dataset), model checkpoints, and backups                                    |
 
 
 ### Detailed design plan
-
-<!-- In each section, you should describe (1) your strategy, (2) the relevant parts of the 
-diagram, (3) justification for your strategy, (4) relate back to lecture material, 
-(5) include specific numbers. -->
-
-<!-- Make sure to clarify how you will satisfy the Unit 4 and Unit 5 requirements, 
-and which optional "difficulty" points you are attempting. -->
 
 ### Training and Re-Training Strategy
 
 #### Whisper ASR Model - Fine Tuning
 
 - **Initial Training**  
-  Fine-tuned on the full [NPTEL2020](https://github.com/AI4Bharat/NPTEL2020-Indian-English-Speech-Dataset/blob/master/README.md) dataset to adapt to Indo-English lecture audio.
+  Fine-tuned Whisper-small ASR(Audio Speech Recognition - Transcription) model on the full [NPTEL2020](https://github.com/AI4Bharat/NPTEL2020-Indian-English-Speech-Dataset/blob/master/README.md) dataset to adapt to Indo-English lecture audio.
 
 - **Re-Training Trigger**  
   Retraining is initiated when the system accumulates more than **100 incorrect transcripts**. Users are prompted to correct these transcripts, and their inputs are used as **new ground truth** for fine-tuning.

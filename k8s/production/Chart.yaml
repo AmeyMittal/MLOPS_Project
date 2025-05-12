@@ -1,0 +1,5 @@
+apiVersion: v2
+name: studybot-production
+version: 1.0.0
+description: Studybot Production Deployment
+

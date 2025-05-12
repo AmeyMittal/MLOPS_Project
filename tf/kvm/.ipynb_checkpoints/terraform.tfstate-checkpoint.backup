@@ -1,0 +1,767 @@
+{
+  "version": 4,
+  "terraform_version": "1.10.5",
+  "serial": 67,
+  "lineage": "47fc316a-713d-9542-db04-032bedac0475",
+  "outputs": {
+    "floating_ip_out": {
+      "value": "129.114.24.229",
+      "type": "string"
+    }
+  },
+  "resources": [
+    {
+      "mode": "data",
+      "type": "openstack_networking_network_v2",
+      "name": "sharednet2",
+      "provider": "provider[\"registry.terraform.io/terraform-provider-openstack/openstack\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "admin_state_up": "true",
+            "all_tags": [],
+            "availability_zone_hints": [],
+            "description": "",
+            "dns_domain": "",
+            "external": false,
+            "id": "4ec616b2-79e1-4813-abca-f2ceb41e0a89",
+            "matching_subnet_cidr": null,
+            "mtu": 1450,
+            "name": "sharednet2",
+            "network_id": null,
+            "region": "KVM@TACC",
+            "segments": [],
+            "shared": "false",
+            "status": null,
+            "subnets": [
+              "00b8d316-7617-4da4-b6c0-b7dd1dd78cd4"
+            ],
+            "tags": null,
+            "tenant_id": "89f528973fea4b3a981f9b2344e522de",
+            "transparent_vlan": false
+          },
+          "sensitive_attributes": []
+        }
+      ]
+    },
+    {
+      "mode": "data",
+      "type": "openstack_networking_secgroup_v2",
+      "name": "allow_8000",
+      "provider": "provider[\"registry.terraform.io/terraform-provider-openstack/openstack\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "all_tags": [],
+            "description": "Enable TCP port 8000 (used by FastAPI)",
+            "id": "17a6d962-cc23-4551-ac0b-08b098f451d2",
+            "name": "allow-8000",
+            "region": "KVM@TACC",
+            "secgroup_id": null,
+            "tags": null,
+            "tenant_id": "89f528973fea4b3a981f9b2344e522de"
+          },
+          "sensitive_attributes": []
+        }
+      ]
+    },
+    {
+      "mode": "data",
+      "type": "openstack_networking_secgroup_v2",
+      "name": "allow_8080",
+      "provider": "provider[\"registry.terraform.io/terraform-provider-openstack/openstack\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "all_tags": [],
+            "description": "Enable TCP port 8080 (used by cAdvisor, Label Studio)",
+            "id": "e6eff5db-c96d-4e3d-be49-1ade281f4a7a",
+            "name": "allow-8080",
+            "region": "KVM@TACC",
+            "secgroup_id": null,
+            "tags": null,
+            "tenant_id": "89f528973fea4b3a981f9b2344e522de"
+          },
+          "sensitive_attributes": []
+        }
+      ]
+    },
+    {
+      "mode": "data",
+      "type": "openstack_networking_secgroup_v2",
+      "name": "allow_8081",
+      "provider": "provider[\"registry.terraform.io/terraform-provider-openstack/openstack\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "all_tags": [],
+            "description": "Enable TCP port 8081 (alt for 8080)",
+            "id": "9806d71f-f0bd-4c5d-8c48-f32db3094575",
+            "name": "allow-8081",
+            "region": "KVM@TACC",
+            "secgroup_id": null,
+            "tags": null,
+            "tenant_id": "89f528973fea4b3a981f9b2344e522de"
+          },
+          "sensitive_attributes": []
+        }
+      ]
+    },
+    {
+      "mode": "data",
+      "type": "openstack_networking_secgroup_v2",
+      "name": "allow_9001",
+      "provider": "provider[\"registry.terraform.io/terraform-provider-openstack/openstack\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "all_tags": [],
+            "description": "Enable TCP port 9001 (used by MinIO Web UI)",
+            "id": "ad2912c0-caa9-49e0-b431-b9b3953b91b3",
+            "name": "allow-9001",
+            "region": "KVM@TACC",
+            "secgroup_id": null,
+            "tags": null,
+            "tenant_id": "89f528973fea4b3a981f9b2344e522de"
+          },
+          "sensitive_attributes": []
+        }
+      ]
+    },
+    {
+      "mode": "data",
+      "type": "openstack_networking_secgroup_v2",
+      "name": "allow_9090",
+      "provider": "provider[\"registry.terraform.io/terraform-provider-openstack/openstack\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "all_tags": [],
+            "description": "Enable TCP port 9090 (used by Prometheus)",
+            "id": "d6736d54-d9a4-431c-a5b5-4d29dbcdee03",
+            "name": "allow-9090",
+            "region": "KVM@TACC",
+            "secgroup_id": null,
+            "tags": null,
+            "tenant_id": "89f528973fea4b3a981f9b2344e522de"
+          },
+          "sensitive_attributes": []
+        }
+      ]
+    },
+    {
+      "mode": "data",
+      "type": "openstack_networking_secgroup_v2",
+      "name": "allow_http_80",
+      "provider": "provider[\"registry.terraform.io/terraform-provider-openstack/openstack\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "all_tags": [],
+            "description": "Enable HTTP traffic on TCP port 80",
+            "id": "5df2db36-79f9-4b9b-b6c9-1ece762d83fb",
+            "name": "allow-http-80",
+            "region": "KVM@TACC",
+            "secgroup_id": null,
+            "tags": null,
+            "tenant_id": "89f528973fea4b3a981f9b2344e522de"
+          },
+          "sensitive_attributes": []
+        }
+      ]
+    },
+    {
+      "mode": "data",
+      "type": "openstack_networking_secgroup_v2",
+      "name": "allow_ssh",
+      "provider": "provider[\"registry.terraform.io/terraform-provider-openstack/openstack\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "all_tags": [],
+            "description": "Enable SSH traffic on TCP port 22",
+            "id": "47860acf-9269-4d26-84b1-363824f7e0a2",
+            "name": "allow-ssh",
+            "region": "KVM@TACC",
+            "secgroup_id": null,
+            "tags": null,
+            "tenant_id": "89f528973fea4b3a981f9b2344e522de"
+          },
+          "sensitive_attributes": []
+        }
+      ]
+    },
+    {
+      "mode": "data",
+      "type": "openstack_networking_subnet_v2",
+      "name": "sharednet2_subnet",
+      "provider": "provider[\"registry.terraform.io/terraform-provider-openstack/openstack\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "all_tags": [],
+            "allocation_pools": [
+              {
+                "end": "10.56.3.253",
+                "start": "10.56.0.2"
+              }
+            ],
+            "cidr": "10.56.0.0/22",
+            "description": "",
+            "dhcp_disabled": null,
+            "dhcp_enabled": null,
+            "dns_nameservers": [
+              "129.114.97.1",
+              "129.114.97.2"
+            ],
+            "enable_dhcp": true,
+            "gateway_ip": "10.56.0.1",
+            "host_routes": [],
+            "id": "00b8d316-7617-4da4-b6c0-b7dd1dd78cd4",
+            "ip_version": 4,
+            "ipv6_address_mode": "",
+            "ipv6_ra_mode": "",
+            "name": "sharednet2-subnet",
+            "network_id": "4ec616b2-79e1-4813-abca-f2ceb41e0a89",
+            "region": "KVM@TACC",
+            "service_types": [],
+            "subnet_id": null,
+            "subnetpool_id": "",
+            "tags": null,
+            "tenant_id": "89f528973fea4b3a981f9b2344e522de"
+          },
+          "sensitive_attributes": []
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "openstack_networking_floatingip_v2",
+      "name": "floating_ip",
+      "provider": "provider[\"registry.terraform.io/terraform-provider-openstack/openstack\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "address": "129.114.24.229",
+            "all_tags": [],
+            "description": "MLOps IP for project48",
+            "dns_domain": "",
+            "dns_name": "",
+            "fixed_ip": "10.56.3.6",
+            "id": "473e31a6-ee38-4777-8962-4b2a86aaec88",
+            "pool": "public",
+            "port_id": "0a3beb7b-dbc6-4544-a549-07a8966bb882",
+            "region": "KVM@TACC",
+            "subnet_id": null,
+            "subnet_ids": null,
+            "tags": [],
+            "tenant_id": "89f528973fea4b3a981f9b2344e522de",
+            "timeouts": null,
+            "value_specs": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo2MDAwMDAwMDAwMDAsImRlbGV0ZSI6NjAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "data.openstack_networking_network_v2.sharednet2",
+            "data.openstack_networking_secgroup_v2.allow_8000",
+            "data.openstack_networking_secgroup_v2.allow_8080",
+            "data.openstack_networking_secgroup_v2.allow_8081",
+            "data.openstack_networking_secgroup_v2.allow_9001",
+            "data.openstack_networking_secgroup_v2.allow_9090",
+            "data.openstack_networking_secgroup_v2.allow_http_80",
+            "data.openstack_networking_secgroup_v2.allow_ssh",
+            "openstack_networking_port_v2.sharednet2_ports"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "openstack_networking_network_v2",
+      "name": "private_net",
+      "provider": "provider[\"registry.terraform.io/terraform-provider-openstack/openstack\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "admin_state_up": true,
+            "all_tags": [],
+            "availability_zone_hints": [],
+            "description": "",
+            "dns_domain": "",
+            "external": false,
+            "id": "ba7b34e6-5aa3-42bc-bc8d-07eb09430fff",
+            "mtu": 1450,
+            "name": "private-net-mlops-project48",
+            "port_security_enabled": false,
+            "qos_policy_id": "",
+            "region": "KVM@TACC",
+            "segments": [],
+            "shared": false,
+            "tags": [],
+            "tenant_id": "89f528973fea4b3a981f9b2344e522de",
+            "timeouts": null,
+            "transparent_vlan": false,
+            "value_specs": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo2MDAwMDAwMDAwMDAsImRlbGV0ZSI6NjAwMDAwMDAwMDAwfX0="
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "openstack_networking_port_v2",
+      "name": "private_net_ports",
+      "provider": "provider[\"registry.terraform.io/terraform-provider-openstack/openstack\"]",
+      "instances": [
+        {
+          "index_key": "node1",
+          "schema_version": 0,
+          "attributes": {
+            "admin_state_up": true,
+            "all_fixed_ips": [
+              "192.168.1.11"
+            ],
+            "all_security_group_ids": [],
+            "all_tags": [],
+            "allowed_address_pairs": [],
+            "binding": [
+              {
+                "host_id": "",
+                "profile": "",
+                "vif_details": {},
+                "vif_type": "",
+                "vnic_type": "normal"
+              }
+            ],
+            "description": "",
+            "device_id": "",
+            "device_owner": "",
+            "dns_assignment": [],
+            "dns_name": "",
+            "extra_dhcp_option": [],
+            "fixed_ip": [
+              {
+                "ip_address": "192.168.1.11",
+                "subnet_id": "b9085dfd-e0d2-4dd1-9901-2b7f035d659b"
+              }
+            ],
+            "id": "f1e87187-14cb-4d35-a72c-15e2e72d3033",
+            "mac_address": "fa:16:3e:d9:0e:e6",
+            "name": "port-node1-mlops-project48",
+            "network_id": "ba7b34e6-5aa3-42bc-bc8d-07eb09430fff",
+            "no_fixed_ip": null,
+            "no_security_groups": null,
+            "port_security_enabled": false,
+            "qos_policy_id": "",
+            "region": "KVM@TACC",
+            "security_group_ids": null,
+            "tags": [],
+            "tenant_id": "89f528973fea4b3a981f9b2344e522de",
+            "timeouts": null,
+            "value_specs": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo2MDAwMDAwMDAwMDAsImRlbGV0ZSI6NjAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "openstack_networking_network_v2.private_net",
+            "openstack_networking_subnet_v2.private_subnet"
+          ]
+        },
+        {
+          "index_key": "node2",
+          "schema_version": 0,
+          "attributes": {
+            "admin_state_up": true,
+            "all_fixed_ips": [
+              "192.168.1.12"
+            ],
+            "all_security_group_ids": [],
+            "all_tags": [],
+            "allowed_address_pairs": [],
+            "binding": [
+              {
+                "host_id": "",
+                "profile": "",
+                "vif_details": {},
+                "vif_type": "",
+                "vnic_type": "normal"
+              }
+            ],
+            "description": "",
+            "device_id": "",
+            "device_owner": "",
+            "dns_assignment": [],
+            "dns_name": "",
+            "extra_dhcp_option": [],
+            "fixed_ip": [
+              {
+                "ip_address": "192.168.1.12",
+                "subnet_id": "b9085dfd-e0d2-4dd1-9901-2b7f035d659b"
+              }
+            ],
+            "id": "3ae68370-cb87-420c-a58b-4702ccb7deb2",
+            "mac_address": "fa:16:3e:ef:04:7a",
+            "name": "port-node2-mlops-project48",
+            "network_id": "ba7b34e6-5aa3-42bc-bc8d-07eb09430fff",
+            "no_fixed_ip": null,
+            "no_security_groups": null,
+            "port_security_enabled": false,
+            "qos_policy_id": "",
+            "region": "KVM@TACC",
+            "security_group_ids": null,
+            "tags": [],
+            "tenant_id": "89f528973fea4b3a981f9b2344e522de",
+            "timeouts": null,
+            "value_specs": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo2MDAwMDAwMDAwMDAsImRlbGV0ZSI6NjAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "openstack_networking_network_v2.private_net",
+            "openstack_networking_subnet_v2.private_subnet"
+          ]
+        },
+        {
+          "index_key": "node3",
+          "schema_version": 0,
+          "attributes": {
+            "admin_state_up": true,
+            "all_fixed_ips": [
+              "192.168.1.13"
+            ],
+            "all_security_group_ids": [],
+            "all_tags": [],
+            "allowed_address_pairs": [],
+            "binding": [
+              {
+                "host_id": "",
+                "profile": "",
+                "vif_details": {},
+                "vif_type": "",
+                "vnic_type": "normal"
+              }
+            ],
+            "description": "",
+            "device_id": "",
+            "device_owner": "",
+            "dns_assignment": [],
+            "dns_name": "",
+            "extra_dhcp_option": [],
+            "fixed_ip": [
+              {
+                "ip_address": "192.168.1.13",
+                "subnet_id": "b9085dfd-e0d2-4dd1-9901-2b7f035d659b"
+              }
+            ],
+            "id": "41a8f942-187b-45c1-a50c-dc085064c401",
+            "mac_address": "fa:16:3e:cc:c2:66",
+            "name": "port-node3-mlops-project48",
+            "network_id": "ba7b34e6-5aa3-42bc-bc8d-07eb09430fff",
+            "no_fixed_ip": null,
+            "no_security_groups": null,
+            "port_security_enabled": false,
+            "qos_policy_id": "",
+            "region": "KVM@TACC",
+            "security_group_ids": null,
+            "tags": [],
+            "tenant_id": "89f528973fea4b3a981f9b2344e522de",
+            "timeouts": null,
+            "value_specs": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo2MDAwMDAwMDAwMDAsImRlbGV0ZSI6NjAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "openstack_networking_network_v2.private_net",
+            "openstack_networking_subnet_v2.private_subnet"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "openstack_networking_port_v2",
+      "name": "sharednet2_ports",
+      "provider": "provider[\"registry.terraform.io/terraform-provider-openstack/openstack\"]",
+      "instances": [
+        {
+          "index_key": "node1",
+          "schema_version": 0,
+          "attributes": {
+            "admin_state_up": true,
+            "all_fixed_ips": [
+              "10.56.3.6"
+            ],
+            "all_security_group_ids": [
+              "17a6d962-cc23-4551-ac0b-08b098f451d2",
+              "47860acf-9269-4d26-84b1-363824f7e0a2",
+              "5df2db36-79f9-4b9b-b6c9-1ece762d83fb",
+              "9806d71f-f0bd-4c5d-8c48-f32db3094575",
+              "ad2912c0-caa9-49e0-b431-b9b3953b91b3",
+              "d6736d54-d9a4-431c-a5b5-4d29dbcdee03",
+              "e6eff5db-c96d-4e3d-be49-1ade281f4a7a"
+            ],
+            "all_tags": [],
+            "allowed_address_pairs": [],
+            "binding": [
+              {
+                "host_id": "",
+                "profile": "",
+                "vif_details": {},
+                "vif_type": "",
+                "vnic_type": "normal"
+              }
+            ],
+            "description": "",
+            "device_id": "",
+            "device_owner": "",
+            "dns_assignment": [],
+            "dns_name": "",
+            "extra_dhcp_option": [],
+            "fixed_ip": [],
+            "id": "0a3beb7b-dbc6-4544-a549-07a8966bb882",
+            "mac_address": "fa:16:3e:ee:f3:a8",
+            "name": "sharednet2-node1-mlops-project48",
+            "network_id": "4ec616b2-79e1-4813-abca-f2ceb41e0a89",
+            "no_fixed_ip": null,
+            "no_security_groups": null,
+            "port_security_enabled": true,
+            "qos_policy_id": "",
+            "region": "KVM@TACC",
+            "security_group_ids": [
+              "17a6d962-cc23-4551-ac0b-08b098f451d2",
+              "47860acf-9269-4d26-84b1-363824f7e0a2",
+              "5df2db36-79f9-4b9b-b6c9-1ece762d83fb",
+              "9806d71f-f0bd-4c5d-8c48-f32db3094575",
+              "ad2912c0-caa9-49e0-b431-b9b3953b91b3",
+              "d6736d54-d9a4-431c-a5b5-4d29dbcdee03",
+              "e6eff5db-c96d-4e3d-be49-1ade281f4a7a"
+            ],
+            "tags": [],
+            "tenant_id": "89f528973fea4b3a981f9b2344e522de",
+            "timeouts": null,
+            "value_specs": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo2MDAwMDAwMDAwMDAsImRlbGV0ZSI6NjAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "data.openstack_networking_network_v2.sharednet2",
+            "data.openstack_networking_secgroup_v2.allow_8000",
+            "data.openstack_networking_secgroup_v2.allow_8080",
+            "data.openstack_networking_secgroup_v2.allow_8081",
+            "data.openstack_networking_secgroup_v2.allow_9001",
+            "data.openstack_networking_secgroup_v2.allow_9090",
+            "data.openstack_networking_secgroup_v2.allow_http_80",
+            "data.openstack_networking_secgroup_v2.allow_ssh"
+          ]
+        },
+        {
+          "index_key": "node2",
+          "schema_version": 0,
+          "attributes": {
+            "admin_state_up": true,
+            "all_fixed_ips": [
+              "10.56.0.220"
+            ],
+            "all_security_group_ids": [
+              "17a6d962-cc23-4551-ac0b-08b098f451d2",
+              "47860acf-9269-4d26-84b1-363824f7e0a2",
+              "5df2db36-79f9-4b9b-b6c9-1ece762d83fb",
+              "9806d71f-f0bd-4c5d-8c48-f32db3094575",
+              "ad2912c0-caa9-49e0-b431-b9b3953b91b3",
+              "d6736d54-d9a4-431c-a5b5-4d29dbcdee03",
+              "e6eff5db-c96d-4e3d-be49-1ade281f4a7a"
+            ],
+            "all_tags": [],
+            "allowed_address_pairs": [],
+            "binding": [
+              {
+                "host_id": "",
+                "profile": "",
+                "vif_details": {},
+                "vif_type": "",
+                "vnic_type": "normal"
+              }
+            ],
+            "description": "",
+            "device_id": "",
+            "device_owner": "",
+            "dns_assignment": [],
+            "dns_name": "",
+            "extra_dhcp_option": [],
+            "fixed_ip": [],
+            "id": "26612bd2-d972-42a7-9654-f565d80f77e0",
+            "mac_address": "fa:16:3e:c8:7e:d0",
+            "name": "sharednet2-node2-mlops-project48",
+            "network_id": "4ec616b2-79e1-4813-abca-f2ceb41e0a89",
+            "no_fixed_ip": null,
+            "no_security_groups": null,
+            "port_security_enabled": true,
+            "qos_policy_id": "",
+            "region": "KVM@TACC",
+            "security_group_ids": [
+              "17a6d962-cc23-4551-ac0b-08b098f451d2",
+              "47860acf-9269-4d26-84b1-363824f7e0a2",
+              "5df2db36-79f9-4b9b-b6c9-1ece762d83fb",
+              "9806d71f-f0bd-4c5d-8c48-f32db3094575",
+              "ad2912c0-caa9-49e0-b431-b9b3953b91b3",
+              "d6736d54-d9a4-431c-a5b5-4d29dbcdee03",
+              "e6eff5db-c96d-4e3d-be49-1ade281f4a7a"
+            ],
+            "tags": [],
+            "tenant_id": "89f528973fea4b3a981f9b2344e522de",
+            "timeouts": null,
+            "value_specs": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo2MDAwMDAwMDAwMDAsImRlbGV0ZSI6NjAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "data.openstack_networking_network_v2.sharednet2",
+            "data.openstack_networking_secgroup_v2.allow_8000",
+            "data.openstack_networking_secgroup_v2.allow_8080",
+            "data.openstack_networking_secgroup_v2.allow_8081",
+            "data.openstack_networking_secgroup_v2.allow_9001",
+            "data.openstack_networking_secgroup_v2.allow_9090",
+            "data.openstack_networking_secgroup_v2.allow_http_80",
+            "data.openstack_networking_secgroup_v2.allow_ssh"
+          ]
+        },
+        {
+          "index_key": "node3",
+          "schema_version": 0,
+          "attributes": {
+            "admin_state_up": true,
+            "all_fixed_ips": [
+              "10.56.3.95"
+            ],
+            "all_security_group_ids": [
+              "17a6d962-cc23-4551-ac0b-08b098f451d2",
+              "47860acf-9269-4d26-84b1-363824f7e0a2",
+              "5df2db36-79f9-4b9b-b6c9-1ece762d83fb",
+              "9806d71f-f0bd-4c5d-8c48-f32db3094575",
+              "ad2912c0-caa9-49e0-b431-b9b3953b91b3",
+              "d6736d54-d9a4-431c-a5b5-4d29dbcdee03",
+              "e6eff5db-c96d-4e3d-be49-1ade281f4a7a"
+            ],
+            "all_tags": [],
+            "allowed_address_pairs": [],
+            "binding": [
+              {
+                "host_id": "",
+                "profile": "",
+                "vif_details": {},
+                "vif_type": "",
+                "vnic_type": "normal"
+              }
+            ],
+            "description": "",
+            "device_id": "",
+            "device_owner": "",
+            "dns_assignment": [],
+            "dns_name": "",
+            "extra_dhcp_option": [],
+            "fixed_ip": [],
+            "id": "0cfcb8cb-3e5a-4032-9273-18490d6314f3",
+            "mac_address": "fa:16:3e:ff:3f:ef",
+            "name": "sharednet2-node3-mlops-project48",
+            "network_id": "4ec616b2-79e1-4813-abca-f2ceb41e0a89",
+            "no_fixed_ip": null,
+            "no_security_groups": null,
+            "port_security_enabled": true,
+            "qos_policy_id": "",
+            "region": "KVM@TACC",
+            "security_group_ids": [
+              "17a6d962-cc23-4551-ac0b-08b098f451d2",
+              "47860acf-9269-4d26-84b1-363824f7e0a2",
+              "5df2db36-79f9-4b9b-b6c9-1ece762d83fb",
+              "9806d71f-f0bd-4c5d-8c48-f32db3094575",
+              "ad2912c0-caa9-49e0-b431-b9b3953b91b3",
+              "d6736d54-d9a4-431c-a5b5-4d29dbcdee03",
+              "e6eff5db-c96d-4e3d-be49-1ade281f4a7a"
+            ],
+            "tags": [],
+            "tenant_id": "89f528973fea4b3a981f9b2344e522de",
+            "timeouts": null,
+            "value_specs": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo2MDAwMDAwMDAwMDAsImRlbGV0ZSI6NjAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "data.openstack_networking_network_v2.sharednet2",
+            "data.openstack_networking_secgroup_v2.allow_8000",
+            "data.openstack_networking_secgroup_v2.allow_8080",
+            "data.openstack_networking_secgroup_v2.allow_8081",
+            "data.openstack_networking_secgroup_v2.allow_9001",
+            "data.openstack_networking_secgroup_v2.allow_9090",
+            "data.openstack_networking_secgroup_v2.allow_http_80",
+            "data.openstack_networking_secgroup_v2.allow_ssh"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "openstack_networking_subnet_v2",
+      "name": "private_subnet",
+      "provider": "provider[\"registry.terraform.io/terraform-provider-openstack/openstack\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "all_tags": [],
+            "allocation_pool": [
+              {
+                "end": "192.168.1.254",
+                "start": "192.168.1.1"
+              }
+            ],
+            "allocation_pools": [
+              {
+                "end": "192.168.1.254",
+                "start": "192.168.1.1"
+              }
+            ],
+            "cidr": "192.168.1.0/24",
+            "description": "",
+            "dns_nameservers": [],
+            "enable_dhcp": true,
+            "gateway_ip": "",
+            "host_routes": [],
+            "id": "b9085dfd-e0d2-4dd1-9901-2b7f035d659b",
+            "ip_version": 4,
+            "ipv6_address_mode": "",
+            "ipv6_ra_mode": "",
+            "name": "private-subnet-mlops-project48",
+            "network_id": "ba7b34e6-5aa3-42bc-bc8d-07eb09430fff",
+            "no_gateway": true,
+            "prefix_length": null,
+            "region": "KVM@TACC",
+            "service_types": [],
+            "subnetpool_id": "",
+            "tags": [],
+            "tenant_id": "89f528973fea4b3a981f9b2344e522de",
+            "timeouts": null,
+            "value_specs": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo2MDAwMDAwMDAwMDAsImRlbGV0ZSI6NjAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "openstack_networking_network_v2.private_net"
+          ]
+        }
+      ]
+    }
+  ],
+  "check_results": null
+}

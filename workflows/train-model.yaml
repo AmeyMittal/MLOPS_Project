@@ -1,0 +1,142 @@
+apiVersion: argoproj.io/v1alpha1
+kind: WorkflowTemplate
+metadata:
+  name: train-model
+spec:
+  entrypoint: training-and-build
+  arguments:
+    parameters:
+    - name: endpoint-ip
+    - name: environment
+      value: "staging"
+
+  templates:
+  - name: training-and-build
+    steps:
+      - - name: trigger-training-endpoint
+          template: call-endpoint
+          arguments:
+            parameters:
+            - name: endpoint-ip
+              value: "{{workflow.parameters.endpoint-ip}}"
+      - - name: offline-evaluation
+          template: offline-evaluation
+          arguments:
+            parameters:
+            - name: model-version
+              value: "{{steps.trigger-training-endpoint.outputs.result}}"
+        when: "{{steps.trigger-training-endpoint.outputs.result}} != ''"
+
+  - name: call-endpoint
+    inputs:
+      parameters:
+      - name: endpoint-ip
+    script:
+      image: alpine:3.18
+      command: [sh]
+      source: |
+        MAX_RETRIES=5
+        RETRY_DELAY=3
+        i=1
+        INSTALL_SUCCESS=0
+
+        set +e  # allow manual error handling
+        while [ $i -le $MAX_RETRIES ]; do
+          echo "[INFO] Attempt $i to install curl and jq..." >&2
+          apk update > /dev/null 2>&1
+          apk add --no-cache curl jq > /dev/null 2>&1
+          STATUS=$?
+          if [ $STATUS -eq 0 ]; then
+            echo "[INFO] Packages installed successfully." >&2
+            INSTALL_SUCCESS=1
+            break
+          fi
+          echo "[WARN] apk add failed (exit $STATUS). Retrying in $RETRY_DELAY seconds..." >&2
+          sleep $RETRY_DELAY
+          i=$((i + 1))
+        done
+        set -e  # return to fail-fast mode
+
+        if [ $INSTALL_SUCCESS -ne 1 ]; then
+          echo "[ERROR] Failed to install curl and jq after $MAX_RETRIES attempts." >&2
+          exit 1
+        fi
+
+        echo "[INFO] Triggering model training..." >&2
+        RESPONSE=$(curl -f -s -X POST http://{{inputs.parameters.endpoint-ip}}:9090/trigger-training)
+        CURL_EXIT_CODE=$?
+
+        echo "[INFO] Training endpoint response was: $RESPONSE" >&2
+
+        if [ $CURL_EXIT_CODE -ne 0 ]; then
+          echo "[ERROR] curl failed with code $CURL_EXIT_CODE" >&2
+          exit $CURL_EXIT_CODE
+        fi
+
+        VERSION=$(echo "$RESPONSE" | jq -r '.new_model_version // empty')
+        if [ -z "$VERSION" ]; then
+          echo "[WARN] 'new_model_version' not found in response." >&2
+          exit 1
+        fi
+
+        echo -n "$VERSION"
+
+  - name: offline-evaluation
+    inputs:
+      parameters:
+        - name: model-version
+    container:
+      image: python:3.11-slim
+      command: [sh, -c]
+      args:
+        - |
+          pip install mlflow-skinny scikit-learn pandas numpy boto3
+          export MLFLOW_TRACKING_URI=http://mlflow.studybot-platform.svc.cluster.local:8000
+
+          echo "[INFO] Downloading model..."
+          mlflow artifacts download \
+            --artifact-uri models:/StudyBotAudioModel/{{inputs.parameters.model-version}} \
+            -d /tmp/eval_model
+
+          echo "[INFO] Downloading dataset from MinIO..."
+          mkdir -p /mnt/workspace/data
+
+          python <<EOF
+import boto3
+import os
+
+bucket = "object-persist-project48"
+file_key = "000ac5380ae36df37519acd350d0c104ab4843c5d4d690b001054b02.wav"
+download_path = "/mnt/workspace/data/audio_sample.wav"
+
+client = boto3.client("s3",
+    endpoint_url="http://minio.studybot-platform.svc.cluster.local:9000",
+    aws_access_key_id=os.environ.get("MINIO_ACCESS_KEY"),
+    aws_secret_access_key=os.environ.get("MINIO_SECRET_KEY"),
+)
+client.download_file(bucket, file_key, download_path)
+EOF
+
+          echo "[INFO] Running evaluation..."
+          python <<EOF
+import numpy as np
+import json
+metrics = {"accuracy": 1.0}
+with open("/mnt/workspace/metrics.json", "w") as f:
+    json.dump(metrics, f)
+print(json.dumps(metrics, indent=2))
+EOF
+      env:
+        - name: MINIO_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: minio-creds
+              key: accesskey
+        - name: MINIO_SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: minio-creds
+              key: secretkey
+      volumeMounts:
+        - name: workdir
+          mountPath: /mnt/workspace

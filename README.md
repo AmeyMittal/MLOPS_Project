@@ -80,16 +80,13 @@ conditions under which it may be used. -->
 how much/when, justification. Include compute, floating IPs, persistent storage. 
 The table below shows an example, it is not a recommendation. -->
 
-| Requirement         | How many/when                                              | Justification |
-|---------------------|------------------------------------------------------------|---------------|
-| `m1.medium` VMs     | 3 for entire project duration                              | One for running RAG chatbot service, one for Whisper inference, one for managing background tasks like data cleanup and user feedback processing |
-| `gpu_mi100`         | 4-hour block twice a week                                  | For fine-tuning Whisper on subsets of Clotho and NPTEL datasets; we expect occasional re-training based on feedback loop, so regular but not continuous GPU access is ideal |
-| `gpu_a100`          | 8-hour block once every 2 weeks                            | For Llama-based RAG system experimentation and possible fine-tuning; high VRAM needed to support LLM context and embeddings |
-| Floating IPs        | 1 for entire project duration, 1 for sporadic use          | One stable IP for API endpoint/chatbot, one temporary IP for occasional re-deployment or testing clusters |
-| Block storage       | 500 GB for persistent storage                              | To store audio files, transcripts, processed feedback, embeddings, and logs across model runs |
-| Object storage      | 2 TB total, expandable as needed                           | For storing raw audio (NPTEL subset), model checkpoints, and backups |
-| Scheduled GPU jobs  | 2 per week (approx. 6–8 hours total)                       | Covers regular retraining and experimentation windows without overprovisioning GPUs |
-| Feedback UI server  | Lightweight VM, active only after >100 transcription errors | Used occasionally to gather ground-truth transcript corrections from users |
+| Requirement                       | How many/when                      | Justification                                                                                             |
+|-----------------------------------|------------------------------------|-----------------------------------------------------------------------------------------------------------|
+| m1.medium VMs                     | 3 for entire project duration     | One for the QA API service, one for Whisper inference, one for managing background tasks like data cleanup and user feedback processing |
+| GPU (Compute GigaIO A100)         | Four 6-hour leases                 | Used for training and re-training tasks                                                                   |
+| Floating IPs                      | 1 for entire project duration, 1 for sporadic use | One stable IP for the API endpoint, one temporary IP for occasional testing or re-deployment         |
+| Block storage                     | 30 GB for persistent storage       | To store audio files, transcripts, processed feedback, embeddings, and logs across model runs            |
+| Object storage                    | 2 TB total, expandable as needed   | For storing raw audio (NPTEL dataset), model checkpoints, and backups                                    |
 
 
 ### Detailed design plan

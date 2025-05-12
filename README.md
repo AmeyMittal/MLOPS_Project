@@ -264,20 +264,30 @@ An interactive dashboard was built with **Streamlit** to visualize feedback data
 
 This pipeline ensures robust offline storage, consistent data validation, and real-time readiness for ML model feedback loops — along with a user-friendly data monitoring dashboard.
 
+
 **File links by Neha Patil**
+
+
 Commits - [https://github.com/AmeyMittal/StudyBot-Audio-Captioning-and-Q-A-chatbot-/commits/main/?author=patilneha08]
+
 
 Streamlit README- [https://github.com/AmeyMittal/StudyBot-Audio-Captioning-and-Q-A-chatbot-/blob/main/Streamlit/README.md]
 
+
 py file to setup Streamlit dashboard- [https://github.com/AmeyMittal/StudyBot-Audio-Captioning-and-Q-A-chatbot-/blob/main/Streamlit/dashboard.py]
+
 
 Docker file for Streamlit - [https://github.com/AmeyMittal/StudyBot-Audio-Captioning-and-Q-A-chatbot-/blob/main/Streamlit/Dockerfile]
 
+
 yaml file for ETL of nptel dataset - [https://github.com/AmeyMittal/StudyBot-Audio-Captioning-and-Q-A-chatbot-/blob/main/data-persist-chi/docker/docker-composefinal-etl.yaml]
+
 
 README for ETL on how to run docker compose - [https://github.com/AmeyMittal/StudyBot-Audio-Captioning-and-Q-A-chatbot-/blob/main/data-persist-chi/docker/README.md]
 
+
 py file to ensure wav and txt files are in pairs- [https://github.com/AmeyMittal/StudyBot-Audio-Captioning-and-Q-A-chatbot-/blob/main/data-persist-chi/docker/pair_files.py]
+
 
 ### Continuous X
 

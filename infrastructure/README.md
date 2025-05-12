@@ -1,3 +1,5 @@
+# Setting up Object Storage and Persistent Block Storage
+
 This folder provides scripts to provision:
 
 --**Object Storage**: Using OpenStack CLI.
@@ -5,7 +7,7 @@ This folder provides scripts to provision:
 
 --**Block Storage**: Using the python-chi library.
 
-#Prerequisites
+## Prerequisites
 
 
 Chameleon Cloud Account: Ensure you have an active account.
@@ -15,17 +17,22 @@ OpenStack RC File: Download your CHI@TACC-openrc.sh from the Chameleon dashboard
 Chameleon VM Instance: Launch a VM instance on Chameleon Cloud where you'll execute these scripts.
 
 
-File Structure
+## File Structure
 
 StudyBot-Audio-Captioning-and-Q-A-chatbot-/
+
 ├── infrastructure/
+
 │   ├── provision_block_storage.py
+
 │   └── provision_object_storage.sh
+
 |   ├── README.md
+
 └── ...
 
 
-Provisioning Steps
+## Provisioning Steps
 
 1. **Object Storage**
    
@@ -33,23 +40,30 @@ This script creates an object storage container named object-storage-project48.
 
 Run the script:
 
+```bash
 bash infrastructure/provision_object_storage.sh
+```
 
 2. **Block Storage**
    
 This script provisions a 30GB block storage volume named block-persist-project48 on the KVM@TACC site.
 
 Run the script:
-
+```bash
 pip install python-chi
 python3 infrastructure/provision_block_storage.py
+```
 
 Verification
 
 Object Storage: Check the container:
 
+```bash
   openstack container list
+```
 
 Block Storage: Verify the volume:
 
+```bash
   openstack volume list
+```

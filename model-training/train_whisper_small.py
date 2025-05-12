@@ -17,7 +17,6 @@ from transformers import (
     Seq2SeqTrainer,
 )
 
-# ---------- Same collator you used ----------
 from dataclasses import dataclass
 from typing import Any, Dict, List, Union
 
@@ -114,7 +113,7 @@ if __name__ == "__main__":
     p.add_argument("--data_dir",  default="./prepared_nptel")
     p.add_argument("--output_dir", default="./whisper-small-run")
     p.add_argument("--model_name", default="openai/whisper-small")
-    p.add_argument("--epochs",    type=int,   default=3)
+    p.add_argument("--epochs",    type=int,   default=4)
     p.add_argument("--batch",     type=int,   default=16)
     p.add_argument("--lr",        type=float, default=1e-5)
     args = p.parse_args()

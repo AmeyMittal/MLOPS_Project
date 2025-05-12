@@ -159,8 +159,11 @@ optional "difficulty" points you are attempting. -->
 
 ### Continuous X
 
-- Installed Terraform manually in the Jupyter environment on Chameleon Cloud and set up the system PATH to include the Terraform binary location.
-- Preparing to use Terraform for provisioning infrastructure and Started identifying required config files like clouds.yaml.
+- Installed Terraform v1.10.5, configured the system PATH, and initialized infrastructure setup with terraform init, validate, plan, and apply.
+- Configured Terraform environment using clouds.yaml, TF_VAR_suffix=project48, and TF_VAR_key=id_rsa_chameleon2.
+- Installed Ansible core v2.16.9 and Ansible v9.8.0, set up ansible.cfg, and verified node connectivity with ansible -m ping.
+- Installed Kubespray dependencies and deployed a Kubernetes cluster using pre_k8s, cluster.yml, and post_k8s Ansible playbooks.
+- Deployed ArgoCD and Argo Workflows using Ansible playbooks (argocd_add_platform.yml and workflow_build_init.yml).
 
 
 

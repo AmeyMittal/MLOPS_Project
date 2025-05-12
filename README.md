@@ -289,6 +289,15 @@ README for ETL on how to run docker compose - [https://github.com/AmeyMittal/Stu
 py file to ensure wav and txt files are in pairs- [https://github.com/AmeyMittal/StudyBot-Audio-Captioning-and-Q-A-chatbot-/blob/main/data-persist-chi/docker/pair_files.py]
 
 
+README for running object storage and persistent block storage files for creation - [https://github.com/AmeyMittal/StudyBot-Audio-Captioning-and-Q-A-chatbot-/blob/main/infrastructure/README.md]
+
+
+py file for persistent block storage - [https://github.com/AmeyMittal/StudyBot-Audio-Captioning-and-Q-A-chatbot-/blob/main/infrastructure/provision_block_storage.py]
+
+
+sh file for object storage creation - [https://github.com/AmeyMittal/StudyBot-Audio-Captioning-and-Q-A-chatbot-/blob/main/infrastructure/provision_object_storage.sh]
+
+
 ### Continuous X
 
 - Installed Terraform v1.10.5 manually in the Chameleon Jupyter environment.

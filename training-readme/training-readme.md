@@ -59,3 +59,27 @@ Here’s what the MinIO “mlflow-artifacts” bucket looks like:
 
 ![Tracking retraining runs](tracking-training-runs.png)
 
+## Model params and metrics mlflow ->
+
+![Model params and metrics mlflow](model-params-and-metrics-mlflow.png)
+
+## Model artifacts ->
+
+![Model params and metrics mlflow](training-readme/model-artifacts.png)
+
+## Model artifacts on minio bucket->
+
+![Model params and metrics mlflow](training-readme/mlflow-artifacts-visible-on-minio-bucket.png)
+
+## userfeedback bucket ->
+
+![Model params and metrics mlflow](training-readme/minio-userfeedback-bucket-contents.png)
+
+## mlflow bucket contents->
+
+![Model params and metrics mlflow](training-readme/minio-mlflow-bucket-contents.png)
+
+## Model artifacts on minio bucket->
+
+![Model params and metrics mlflow](training-readme/minio-bucket-visible.png)
+

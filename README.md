@@ -153,6 +153,40 @@ and which optional "difficulty" points you are attempting. -->
 
 #### Model Serving Strategy
 
+File Links ->
+
+Commits by Amey Mittal ->
+
+Fastapi docker -> https://github.com/AmeyMittal/StudyBot-Audio-Captioning-and-Q-A-chatbot-/blob/main/FastAPI_TF/Dockerfile
+
+Fast api app.py -> https://github.com/AmeyMittal/StudyBot-Audio-Captioning-and-Q-A-chatbot-/blob/main/FastAPI_TF/app.py
+
+pip Requirements -> https://github.com/AmeyMittal/StudyBot-Audio-Captioning-and-Q-A-chatbot-/blob/main/FastAPI_TF/requirements.txt
+
+Flask app frontend files ->
+
+CSS -> https://github.com/AmeyMittal/StudyBot-Audio-Captioning-and-Q-A-chatbot-/blob/main/Flask_App/static/style.css
+
+Templates HTML -> https://github.com/AmeyMittal/StudyBot-Audio-Captioning-and-Q-A-chatbot-/blob/main/Flask_App/templates/index.html
+
+Dockerfile -> https://github.com/AmeyMittal/StudyBot-Audio-Captioning-and-Q-A-chatbot-/blob/main/Flask_App/Dockerfile
+
+Flask app.py -> https://github.com/AmeyMittal/StudyBot-Audio-Captioning-and-Q-A-chatbot-/blob/main/Flask_App/app.py
+
+Pip requirements -> https://github.com/AmeyMittal/StudyBot-Audio-Captioning-and-Q-A-chatbot-/blob/main/Flask_App/requirements.txt
+
+Services Set up (DOCKER) ->
+
+Label Studio Docker -> https://github.com/AmeyMittal/StudyBot-Audio-Captioning-and-Q-A-chatbot-/blob/main/ansible/k8s/docker-compose-labelstudio.yaml
+
+Fastapi, flask, minio init -> https://github.com/AmeyMittal/StudyBot-Audio-Captioning-and-Q-A-chatbot-/blob/main/ansible/k8s/docker-compose-production-new.yaml
+
+Grafana, Prometheus -> https://github.com/AmeyMittal/StudyBot-Audio-Captioning-and-Q-A-chatbot-/blob/main/ansible/k8s/docker-compose-prometheus.yaml
+
+Prometheus yml -> https://github.com/AmeyMittal/StudyBot-Audio-Captioning-and-Q-A-chatbot-/blob/main/ansible/k8s/prometheus.yml
+
+Online evaluation -> https://github.com/AmeyMittal/StudyBot-Audio-Captioning-and-Q-A-chatbot-/blob/main/OnlineEvaluation.ipynb
+
 **Strategy**  
 Whisper is deployed as containerized FastAPI endpoints, hostel on KVM@TACC.
 Flask is used to make the UI/UX

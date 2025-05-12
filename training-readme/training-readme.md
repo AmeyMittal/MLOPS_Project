@@ -65,21 +65,21 @@ Here’s what the MinIO “mlflow-artifacts” bucket looks like:
 
 ## Model artifacts ->
 
-![Model artifacts](training-readme/model-artifacts.png)
+![Model artifacts](model-artifacts.png)
 
 ## Model artifacts on minio bucket->
 
-![Model artifacts on minio bucket](training-readme/mlflow-artifacts-visible-on-minio-bucket.png)
+![Model artifacts on minio bucket](mlflow-artifacts-visible-on-minio-bucket.png)
 
 ## userfeedback bucket ->
 
-![userfeedback bucket](training-readme/minio-userfeedback-bucket-contents.png)
+![userfeedback bucket](minio-userfeedback-bucket-contents.png)
 
 ## mlflow bucket contents->
 
-![mlflow bucket contents](training-readme/minio-mlflow-bucket-contents.png)
+![mlflow bucket contents](minio-mlflow-bucket-contents.png)
 
 ## Model artifacts on minio bucket->
 
-![Model artifacts on minio bucket](training-readme/minio-bucket-visible.png)
+![Model artifacts on minio bucket](minio-bucket-visible.png)
 

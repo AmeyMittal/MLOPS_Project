@@ -159,8 +159,8 @@ optional "difficulty" points you are attempting. -->
 
 ### Continuous X
 
-<!-- Make sure to clarify how you will satisfy the Unit 3 requirements,  and which 
-optional "difficulty" points you are attempting. -->
+-Installed Terraform manually in the Jupyter environment on Chameleon Cloud and set up the system PATH to include the Terraform binary location.
+-Preparing to use Terraform for provisioning infrastructure and Started identifying required config files like clouds.yaml.
 
 
 

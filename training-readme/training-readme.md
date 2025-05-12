@@ -1,3 +1,5 @@
+# Training and Infra
+
 Provision VM server instance using -> https://github.com/AmeyMittal/StudyBot-Audio-Captioning-and-Q-A-chatbot-/blob/main/provisioning/create_vm_server.ipynb
 
 Provision training instance (against an active GPU lease) using -> https://github.com/AmeyMittal/StudyBot-Audio-Captioning-and-Q-A-chatbot-/blob/main/provisioning/create_training_server.ipynb
@@ -42,3 +44,18 @@ python train_whisper_small.py
 3. Trigger retraining
 
 python retraining.py
+
+
+
+MLFLow and MinIO Object Store ->
+
+Here’s what the MinIO “mlflow-artifacts” bucket looks like:
+
+## Tracking Training runs ->
+
+![Tracking training runs](tracking-training-runs.png)
+
+## Tracking Retraining runs ->
+
+![Tracking retraining runs](tracking-training-runs.png)
+

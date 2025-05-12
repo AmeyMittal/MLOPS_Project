@@ -131,26 +131,33 @@ and which optional "difficulty" points you are attempting. -->
 #### Model Serving Strategy
 
 **Strategy**  
-Both Whisper and LLaMA are deployed as containerized **FastAPI** endpoints, each hosted on separate VMs with GPU support.
+Whisper is deployed as containerized FastAPI endpoints, hostel on KVM@TACC.
+Flask is used to make the UI/UX
+Prometheus & Grafana is used to scrape the UI and generate dashboards for system performance
 
-- **Whisper Endpoint**: Supports real-time transcription (ASR) with online inference.
-- **LLaMA Endpoint**: Powers context-aware question answering using a RAG pipeline.
+**Flask** used for:
+- Flask app serves a web interface where users can upload .wav audio files.
+- It sends the files to a FastAPI backend for transcription using Whisper and displays the generated transcript.
+- The app also uploads audio and transcript metadata to MinIO and allows users to flag incorrect outputs and give the correct one.
 
-**Deployment Diagram**  
-Two containerized services:
-- `Whisper API`: Deployed on a GPU-enabled VM
-- `RAG Chatbot API`: Deployed on a separate GPU-enabled VM with high VRAM
+**FastAPI** used for:
+- FastAPI server receives audio files from the Flask frontend for transcription.
+- It runs the Whisper model (via CPU) to generate transcripts from the uploaded .wav files.
+- The server returns the transcript to Flask and exposes Prometheus-compatible metrics for monitoring.
 
-**Justification**  
-- **Whisper** must maintain inference latency under 2 seconds for ~30-second audio clips to be usable in real-time scenarios.
-- **LLaMA** requires over 40 GB of GPU VRAM to support at least three concurrent users interacting with lecture-based content.
+**MinIO** used for:
+- Bucket `production` is made where WAV files are getting stored with 3 tags, transcript, flagged, timestamp
+- Bucket `userfeedback` is made where WAV files are getting stored with 2 tags, corrected_transcript, timestamp
+- This bucket provides new data to the re-training workflow 
 
-**Optimizations**  
-- **Whisper**: Uses FP16 precision and **ONNX Runtime** to reduce latency and resource usage.
-- **RAG System**: Utilizes **4-bit quantized** version of LLaMA for memory efficiency.
+**Prometheus** used for:
+- scrapes fastapi server by sending HTTP requests to /metrics 
+- And it sends to grafana for analysing the data 
 
-**Additional Evaluation**  
-Whisper was benchmarked across CPU, GPU, and lightweight variants to assess the cost-performance tradeoff and optimize deployment choices.
+**Grafana** used for:
+- Grafana queries Prometheus
+- It pulls data from Prometheus using PromQL (Prometheus Query Language)
+- Then displays this data in real-time via dashboards and panels.
 
 ### Data pipeline
 

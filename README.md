@@ -184,8 +184,85 @@ Prometheus & Grafana is used to scrape the UI and generate dashboards for system
 
 ### Data pipeline
 
-<!-- Make sure to clarify how you will satisfy the Unit 8 requirements,  and which 
-optional "difficulty" points you are attempting. -->
+This section incorporates both offline and online data pipelines, persistent storage management, and an interactive data dashboard.
+
+---
+
+###  Offline Data Storage (Object Storage)
+
+- **Object Storage Name:** `object-persist-project48`  
+  **Location:** CHI@TACC (Chameleon Cloud)
+
+- **Source Dataset:**  
+  [NPTEL Indian English Speech Dataset (AI4Bharat)](https://github.com/AI4Bharat/NPTEL2020-Indian-English-Speech-Dataset)  
+  The dataset was originally provided in segmented files: nptel-test.tar.gz.partaa,  partab,  partac
+
+
+- **Preprocessing Steps:**
+1. Concatenated the split archive files
+2. Extracted the combined `.tar.gz` file
+3. Curated a 10GB subset for faster access
+4. Uploaded to Hugging Face for programmatic retrieval:  
+    [Hugging Face Dataset](https://huggingface.co/datasets/nehapatil08/nptel-dataset/resolve/main/nptelfinal.zip)
+
+- **ETL Pipeline:**
+- Implemented using Docker Compose
+- Extracts and unzips the dataset into a shared volume
+- Runs `pair_files.py` to ensure `.wav` and `.txt` files are properly paired
+- Unpaired or corrupt files are excluded
+- Final paired data is uploaded to the object storage
+
+---
+
+###  Persistent Block Storage
+
+- **Block Storage Name:** `block-persist-project48`  
+**Location:** KVM@TACC (Chameleon Cloud)
+
+- **Purpose:** Stores critical non-Git tracked artifacts used across the pipeline such as:
+- MLflow training artifacts
+- MinIO-stored audio feedback
+- Evaluation outputs
+- Container image layers
+- Model binaries and metadata
+
+---
+
+###  Online Data & Stream Simulation
+
+- Real-time user feedback is simulated via `.wav` and `.txt` files uploaded to MinIO.
+- These files replicate data that would typically be sent during live model inference.
+- Online inference scripts read from MinIO, validate input, and return predictions.
+
+---
+
+###  Interactive Streamlit Dashboard
+
+An interactive dashboard was built with **Streamlit** to visualize feedback data stored in MinIO.
+
+- **Dashboard Source:** `dashboard.py`
+- **MinIO Bucket Path:** `mlflow-artifacts/userfeedback/`
+
+#### Key Features:
+- Connects to MinIO and lists feedback files
+- Validates and pairs `.wav` audio and `.txt` transcripts
+
+##### Displays:
+- Audio preview and transcript
+- Word count, transcript warnings
+- Audio duration and anomaly alerts
+
+##### Provides global insights:
+- Word count distributions
+- Audio length distributions
+
+##### Includes tools to:
+- Mark samples for review
+- Export transcript statistics as CSV
+
+---
+
+This pipeline ensures robust offline storage, consistent data validation, and real-time readiness for ML model feedback loops — along with a user-friendly data monitoring dashboard.
 
 ### Continuous X
 

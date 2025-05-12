@@ -4,7 +4,7 @@ services:
 
   fastapi_server:
     build:
-      context: /home/cc/StudyBot-Audio-Captioning-and-Q-A-chatbot-/FastAPI_TF 
+      context: /home/cc/study-bot/FastAPI_TF 
       dockerfile: Dockerfile
     container_name: fastapi_server
    # deploy:
@@ -20,7 +20,7 @@ services:
 
   flask:
     build:
-      context: /home/cc/StudyBot-Audio-Captioning-and-Q-A-chatbot-/Flask_App
+      context: /home/cc/study-bot/Flask_App
       dockerfile: Dockerfile
     container_name: flask
     ports:
